@@ -1,0 +1,38 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.bookstore:bookstore >-----------------------
+[INFO] Building bookstore 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ bookstore >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ bookstore ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 39 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ bookstore ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ bookstore ---
+[INFO] skip non existing resourceDirectory C:\Users\CHAMA COMPUTERS\Desktop\New folder\Alariis-bookstore\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ bookstore ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ bookstore <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ bookstore ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2026-02-12T02:09:32.492+05:30  INFO 10104 --- [bookstore] [           main] com.bookstore.BookstoreApplication       : Starting BookstoreApplication using Java 22.0.1 with PID 10104 (C:\Users\CHAMA COMPUTERS\Desktop\New folder\Alariis-bookstore\target\classes started by CHAMA COMPUTERS in C:\Users\CHAMA COMPUTERS\Desktop\New folder\Alariis-bookstore)
+2026-02-12T02:09:32.496+05:30  INFO 10104 --- [bookstore] [           main] com.bookstore.BookstoreApplication       : No active profile set, falling back to 1 default profile: "default"
