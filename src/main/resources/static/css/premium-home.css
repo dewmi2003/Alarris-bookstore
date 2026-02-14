@@ -1,12 +1,10 @@
-/* ========================================
-   ALARIIS BOOKSTORE - PREMIUM DESIGN SYSTEM
-   ======================================== */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ============ CSS VARIABLES ============ */
+
 :root {
-    /* Colors */
+    
     --primary-indigo: #4F46E5;
     --primary-dark: #3730A3;
     --accent-coral: #FF6B6B;
@@ -20,31 +18,31 @@
     --warning: #F59E0B;
     --error: #EF4444;
 
-    /* Gradients */
+    
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     --gradient-accent: linear-gradient(135deg, #FF6B6B 0%, #FF8C42 100%);
 
-    /* Shadows */
+    
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
     --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.3);
 
-    /* Transitions */
+    
     --transition-fast: all 0.2s ease;
     --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Spacing */
+    
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
 
-    /* Border Radius */
+    
     --radius-sm: 0.5rem;
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
@@ -56,7 +54,7 @@
     --card-bg: #FFFFFF;
 }
 
-/* Dark Mode Variables */
+
 [data-theme="dark"] {
     --bg-light: #0F172A;
     --bg-white: #1E293B;
@@ -87,7 +85,7 @@
     color: var(--primary-indigo);
 }
 
-/* ============ GLOBAL RESET ============ */
+
 * {
     margin: 0;
     padding: 0;
@@ -124,7 +122,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Fix for invisible text in light mode */
+
 [data-theme="light"] .hero-heading,
 [data-theme="light"] .hero-subheading {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -132,10 +130,10 @@ body {
 
 [data-theme="light"] .section-title {
     color: var(--primary-indigo);
-    /* Stronger contrast in light mode */
+   
 }
 
-/* ============ SCROLL PROGRESS ============ */
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -147,7 +145,7 @@ body {
     transition: width 0.1s ease;
 }
 
-/* ============ ANNOUNCEMENT BAR ============ */
+
 .announcement-bar {
     background: var(--gradient-primary);
     color: white;
@@ -187,7 +185,7 @@ body {
     }
 }
 
-/* ============ PREMIUM NAVIGATION ============ */
+
 .premium-nav {
     background: var(--gradient-hero);
     backdrop-filter: blur(16px) saturate(140%);
@@ -520,7 +518,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* Nav Actions */
+
 .nav-actions {
     display: flex;
     align-items: center;
@@ -780,7 +778,7 @@ body {
     color: #e0e7ff;
 }
 
-/* User Dropdown */
+
 .user-dropdown {
     position: relative;
 }
@@ -874,7 +872,7 @@ body {
     color: var(--primary-indigo-light);
 }
 
-/* ============ HERO SECTION ============ */
+
 .hero-premium {
     min-height: 90vh;
     position: relative;
@@ -1002,7 +1000,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* Hero Stats */
+
 .hero-stats {
     display: flex;
     gap: 3rem;
@@ -1027,7 +1025,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* Floating Books */
 .hero-visual {
     position: relative;
     height: 500px;
@@ -1090,7 +1087,7 @@ body {
     }
 }
 
-/* ============ SECTIONS ============ */
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -1125,7 +1122,7 @@ section {
     border-radius: 2px;
 }
 
-/* ============ CATEGORIES SECTION ============ */
+
 .categories-section {
     background: var(--bg-white);
 }
@@ -1195,7 +1192,7 @@ section {
     gap: 1rem;
 }
 
-/* ============ TRENDING SECTION ============ */
+
 .trending-section {
     background: var(--bg-light);
 }
@@ -1254,7 +1251,7 @@ section {
     border-radius: 10px;
 }
 
-/* ============ BOOK CARDS ============ */
+
 .book-card-modern {
     min-width: 300px;
     background: white;
@@ -1421,14 +1418,14 @@ section {
     box-shadow: var(--shadow-lg);
 }
 
-/* ============ BOOKS GRID ============ */
+
 .books-grid-modern {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-/* ============ FLASH SALE SECTION ============ */
+
 .flash-sale-section {
     background: linear-gradient(135deg, #4338ca 0%, #4f46e5 55%, #3730a3 100%);
     color: white;
@@ -1546,7 +1543,7 @@ section {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* ============ REVIEWS SECTION ============ */
+
 .reviews-section {
     background: var(--bg-white);
 }
@@ -1613,7 +1610,7 @@ section {
     color: var(--text-gray);
 }
 
-/* ============ NEWSLETTER SECTION ============ */
+
 .newsletter-section {
     background: url('/images/join.jpg') center/cover no-repeat;
     color: white;
@@ -1694,7 +1691,7 @@ section {
     opacity: 0.8;
 }
 
-/* ============ FOOTER ============ */
+
 .premium-footer {
     background: var(--text-dark);
     color: white;
@@ -1771,15 +1768,15 @@ section {
 }
 .footer-row {
     display: flex;
-    justify-content: space-between; /* spreads columns across full width */
-    align-items: flex-start;        /* aligns items at top */
-    gap: 120px;                     /* space between columns */
-    flex-wrap: nowrap;              /* keeps it one row, won't wrap */
+    justify-content: space-between; 
+    align-items: flex-start;        
+    gap: 120px;                    
+    flex-wrap: nowrap;             
 }
 
 .footer-col {
     min-width: 200px;
-    flex: 1;                        /* lets columns grow evenly */
+    flex: 1;                        
 }
 
 .footer-bottom {
@@ -1805,7 +1802,7 @@ section {
     color: white;
 }
 
-/* ============ BACK TO TOP ============ */
+
 .back-to-top {
     position: fixed;
     bottom: 2rem;
@@ -1834,7 +1831,7 @@ section {
     box-shadow: var(--shadow-xl);
 }
 
-/* ============ TOAST NOTIFICATION ============ */
+
 .toast {
     position: fixed;
     bottom: 2rem;
@@ -1858,7 +1855,6 @@ section {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ============ RESPONSIVE DESIGN ============ */
 @media (max-width: 1024px) {
     .hero-content-wrapper {
         grid-template-columns: 1fr;
