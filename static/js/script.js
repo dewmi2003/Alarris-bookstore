@@ -1,9 +1,4 @@
-/**
- * ========================================
- * BOOKSTORE - COMPLETE JAVASCRIPT
- * Modern, Interactive Functionality
- * ========================================
- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -20,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📚 BookStore initialized successfully!');
 });
 
-// ============ MOBILE MENU ============
+
 function initMobileMenu() {
     const toggle = document.getElementById('mobileMenuToggle');
     const menu = document.getElementById('navMenu');
@@ -41,7 +36,7 @@ function initMobileMenu() {
     }
 }
 
-// ============ ALERT AUTO-DISMISS ============
+
 function initAlertAutoDismiss() {
     const alerts = document.querySelectorAll('.alert');
     
@@ -82,7 +77,7 @@ function dismissAlert(alert) {
     setTimeout(() => alert.remove(), 300);
 }
 
-// ============ FORM VALIDATION ============
+
 function initFormValidation() {
     const forms = document.querySelectorAll('form');
     
@@ -203,7 +198,7 @@ function removeFieldError(field) {
     }
 }
 
-// ============ QUANTITY CONTROLS ============
+
 function initQuantityControls() {
     const quantityInputs = document.querySelectorAll('input[type="number"][name="quantity"]');
     
@@ -296,7 +291,7 @@ function createQuantityButton(text, onClick) {
     return btn;
 }
 
-// ============ IMAGE PREVIEW ============
+
 function initImagePreview() {
     const fileInputs = document.querySelectorAll('input[type="file"][accept*="image"]');
     
@@ -333,7 +328,7 @@ function initImagePreview() {
     });
 }
 
-// ============ SEARCH ENHANCEMENT ============
+
 function initSearchEnhancement() {
     const searchInputs = document.querySelectorAll('input[type="text"][placeholder*="Search"]');
     
@@ -383,7 +378,7 @@ function initSearchEnhancement() {
     });
 }
 
-// ============ SCROLL ANIMATIONS ============
+
 function initAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -409,7 +404,7 @@ function initAnimations() {
     });
 }
 
-// ============ BACK TO TOP BUTTON ============
+
 function initBackToTop() {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '↑';
@@ -457,7 +452,7 @@ function initBackToTop() {
     });
 }
 
-// ============ NOTIFICATION SYSTEM ============
+
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -511,7 +506,7 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// ============ CONFIRM DIALOGS ============
+
 function confirmAction(message, callback) {
     const overlay = document.createElement('div');
     overlay.style.cssText = `
@@ -558,7 +553,7 @@ function confirmAction(message, callback) {
     };
 }
 
-// ============ LOADING SPINNER ============
+
 function showLoading() {
     const loader = document.createElement('div');
     loader.id = 'globalLoader';
@@ -594,7 +589,7 @@ function hideLoading() {
     if (loader) loader.remove();
 }
 
-// ============ UTILITY FUNCTIONS ============
+
 function formatCurrency(amount) {
     return '$' + parseFloat(amount).toFixed(2);
 }
@@ -607,7 +602,7 @@ function debounce(func, wait) {
     };
 }
 
-// ============ DELETE CONFIRMATIONS ============
+
 document.addEventListener('click', function(e) {
     if (e.target.closest('button.btn-danger') || 
         e.target.closest('form[action*="delete"]')) {
@@ -622,7 +617,7 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// ============ SMOOTH SCROLL ============
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -636,7 +631,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============ EXPOSE GLOBAL FUNCTIONS ============
+
 window.showNotification = showNotification;
 window.confirmAction = confirmAction;
 window.showLoading = showLoading;
