@@ -1,22 +1,19 @@
-// ========================================
-// ALARIIS BOOKSTORE - GLOBAL DESIGN SYSTEM JS
-// Consistent Interactions Across All Pages
-// ========================================
+
 
 (function () {
     'use strict';
 
-    // ============ THEME MANAGER ============
+   
     const ThemeManager = {
         init() {
             this.themeToggle = document.getElementById('themeToggle');
             this.html = document.documentElement;
 
-            // Load saved theme
+            
             const savedTheme = localStorage.getItem('theme') || 'light';
             this.setTheme(savedTheme);
 
-            // Add event listener
+           
             if (this.themeToggle) {
                 this.themeToggle.addEventListener('click', () => this.toggleTheme());
             }
@@ -43,12 +40,12 @@
         }
     };
 
-    // ============ TOAST NOTIFICATIONS ============
+    
     const Toast = {
         container: null,
 
         init() {
-            // Create toast container if it doesn't exist
+            
             if (!document.querySelector('.toast-container')) {
                 this.container = document.createElement('div');
                 this.container.className = 'toast-container';
@@ -81,7 +78,7 @@
 
             this.container.appendChild(toast);
 
-            // Auto remove after duration
+           
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transform = 'translateX(100%)';
@@ -106,7 +103,7 @@
         }
     };
 
-    // ============ SCROLL PROGRESS ============
+    
     const ScrollProgress = {
         init() {
             this.progressBar = document.getElementById('scrollProgress');
@@ -127,7 +124,7 @@
         }
     };
 
-    // ============ BACK TO TOP BUTTON ============
+  
     const BackToTop = {
         init() {
             this.button = document.getElementById('backToTop');
@@ -156,7 +153,7 @@
         }
     };
 
-    // ============ MODAL MANAGER ============
+    
     const Modal = {
         open(modalId) {
             const modal = document.getElementById(modalId);
@@ -175,7 +172,7 @@
         },
 
         init() {
-            // Close modal on backdrop click
+            
             document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
                 backdrop.addEventListener('click', (e) => {
                     if (e.target === backdrop) {
@@ -185,7 +182,7 @@
                 });
             });
 
-            // Close modal on close button click
+           
             document.querySelectorAll('.modal-close').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const modal = btn.closest('.modal-backdrop');
@@ -198,7 +195,7 @@
         }
     };
 
-    // ============ TAB MANAGER ============
+    
     const Tabs = {
         init() {
             document.querySelectorAll('.tab').forEach(tab => {
@@ -210,21 +207,21 @@
             const tabGroup = clickedTab.closest('.tabs');
             const targetId = clickedTab.dataset.tab;
 
-            // Remove active class from all tabs in this group
+            
             tabGroup.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
 
-            // Add active class to clicked tab
+            
             clickedTab.classList.add('active');
 
-            // Hide all tab contents
+           
             const container = tabGroup.parentElement;
             container.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
 
-            // Show target content
+          
             const targetContent = document.getElementById(targetId);
             if (targetContent) {
                 targetContent.classList.add('active');
@@ -232,10 +229,10 @@
         }
     };
 
-    // ============ DROPDOWN MANAGER ============
+    
     const Dropdown = {
         init() {
-            // Close dropdowns when clicking outside
+            
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.dropdown')) {
                     document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
@@ -253,14 +250,14 @@
         }
     };
 
-    // ============ FORM VALIDATION ============
+    
     const FormValidator = {
         init() {
             document.querySelectorAll('form[data-validate]').forEach(form => {
                 form.addEventListener('submit', (e) => this.validate(e, form));
             });
 
-            // Real-time validation
+          
             document.querySelectorAll('input[required], textarea[required]').forEach(input => {
                 input.addEventListener('blur', () => this.validateField(input));
             });
@@ -289,18 +286,18 @@
             const type = input.type;
             let isValid = true;
 
-            // Required check
+            
             if (input.hasAttribute('required') && !value) {
                 isValid = false;
             }
 
-            // Email validation
+            
             if (type === 'email' && value) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 isValid = emailRegex.test(value);
             }
 
-            // Update UI
+            
             if (isValid) {
                 input.classList.remove('input-error');
             } else {
@@ -311,7 +308,7 @@
         }
     };
 
-    // ============ SCROLL ANIMATIONS ============
+    
     const ScrollAnimations = {
         init() {
             const observer = new IntersectionObserver(
@@ -326,7 +323,7 @@
                 { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
             );
 
-            // Observe elements with scroll-animate class
+            
             document.querySelectorAll('.scroll-animate').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
@@ -336,7 +333,7 @@
         }
     };
 
-    // ============ LAZY LOADING IMAGES ============
+ 
     const LazyLoad = {
         init() {
             const imageObserver = new IntersectionObserver((entries) => {
@@ -359,7 +356,7 @@
         }
     };
 
-    // ============ SMOOTH SCROLL FOR ANCHORS ============
+    
     const SmoothScroll = {
         init() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -380,7 +377,7 @@
         }
     };
 
-    // ============ COUNTDOWN TIMER ============
+   
     const Countdown = {
         timers: new Map(),
 
@@ -421,7 +418,7 @@
         }
     };
 
-    // ============ DEBOUNCE UTILITY ============
+   
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -434,7 +431,7 @@
         };
     }
 
-    // ============ INITIALIZE ALL MODULES ============
+    
     function init() {
         ThemeManager.init();
         Toast.init();
@@ -452,14 +449,14 @@
         console.log('%c🎨 Alariis Design System Loaded', 'color: #1E2A78; font-size: 16px; font-weight: bold;');
     }
 
-    // Initialize when DOM is ready
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 
-    // Expose utilities globally
+    
     window.AlariisDesignSystem = {
         Toast,
         Modal,
