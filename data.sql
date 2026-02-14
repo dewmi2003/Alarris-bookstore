@@ -1,4 +1,4 @@
--- Insert Categories
+
 INSERT INTO categories (name, description, created_at, updated_at) VALUES
 ('Fiction', 'Literary and contemporary fiction', NOW(), NOW()),
 ('Science Fiction', 'Sci-fi and futuristic novels', NOW(), NOW()),
