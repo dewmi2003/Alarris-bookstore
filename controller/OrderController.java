@@ -55,9 +55,9 @@ public class OrderController {
         User user = userService.findUserByEmail(userDetails.getUsername());
 
         try {
-            // Simulate Payment Processing
+            
             if ("Koko".equals(paymentMethod)) {
-                // Simulate Koko redirection or processing
+               
                 Thread.sleep(1000);
             } else if ("Card".equals(paymentMethod)) {
                 Thread.sleep(1500);
