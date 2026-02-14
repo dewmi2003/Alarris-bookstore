@@ -89,21 +89,19 @@ document.getElementById("details").innerHTML=`
     <input type="number" id="quantity" value="1" min="1">
 </p><br>
 <p>${book.desc}</p><br>
-<button id="addCartBtn">Add to Cart 🛒</button>
+<button id="addCartBtn">Add to Cart </button>
 </div>
 `;
 
 const priceEl = document.getElementById("bookPrice");
 const quantityInput = document.getElementById("quantity");
 
-// Update price dynamically based on quantity
 quantityInput.addEventListener("input", () => {
     let qty = parseInt(quantityInput.value);
     if(qty < 1) qty = 1;
     priceEl.textContent = book.price * qty;
 });
 
-// Add to cart button passes both title and quantity
 document.getElementById("addCartBtn").addEventListener("click", () => {
     const qty = parseInt(quantityInput.value);
     window.location.href = `cart-success.html?title=${encodeURIComponent(book.title)}&quantity=${qty}`;
@@ -112,4 +110,5 @@ document.getElementById("addCartBtn").addEventListener("click", () => {
 
 </body>
 </html>
+
 
