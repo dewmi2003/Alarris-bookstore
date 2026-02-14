@@ -1,9 +1,3 @@
-/* ========================================
-   ALARIIS BOOKSTORE - REUSABLE COMPONENTS
-   Consistent UI Components Across All Pages
-   ======================================== */
-
-/* ============ LOADING SKELETONS ============ */
 .skeleton {
     background: linear-gradient(90deg,
             var(--bg-light-gray) 0%,
@@ -45,7 +39,7 @@
     border-radius: var(--radius-xl);
 }
 
-/* ============ TOAST NOTIFICATIONS ============ */
+
 .toast-container {
     position: fixed;
     bottom: var(--space-4);
@@ -135,7 +129,6 @@
     color: var(--text-primary);
 }
 
-/* ============ BADGES ============ */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -178,7 +171,7 @@
     border: 2px solid currentColor;
 }
 
-/* ============ PROGRESS BARS ============ */
+
 .progress {
     width: 100%;
     height: 8px;
@@ -218,7 +211,7 @@
     }
 }
 
-/* ============ MODALS ============ */
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -321,7 +314,7 @@
     justify-content: flex-end;
 }
 
-/* ============ DROPDOWNS ============ */
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -394,7 +387,7 @@
     margin: var(--space-2) 0;
 }
 
-/* ============ TABS ============ */
+
 .tabs {
     display: flex;
     gap: var(--space-2);
@@ -442,7 +435,7 @@
     animation: fadeInUp 0.4s ease-out;
 }
 
-/* ============ TOOLTIPS ============ */
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -480,7 +473,7 @@
     visibility: visible;
 }
 
-/* ============ ALERTS ============ */
+
 .alert {
     padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-lg);
@@ -533,7 +526,7 @@
     color: var(--text-secondary);
 }
 
-/* ============ PAGINATION ============ */
+
 .pagination {
     display: flex;
     gap: var(--space-1);
@@ -573,7 +566,7 @@
     pointer-events: none;
 }
 
-/* ============ BREADCRUMBS ============ */
+
 .breadcrumbs {
     display: flex;
     align-items: center;
@@ -601,7 +594,7 @@
     color: var(--text-tertiary);
 }
 
-/* ============ RATING STARS ============ */
+
 .rating {
     display: inline-flex;
     gap: 0.25rem;
@@ -629,7 +622,7 @@
     color: #FFD700;
 }
 
-/* ============ COUNTDOWN TIMER ============ */
+
 .countdown {
     display: flex;
     gap: var(--space-3);
@@ -663,7 +656,7 @@
     color: var(--text-secondary);
 }
 
-/* ============ BACK TO TOP BUTTON ============ */
+
 .back-to-top {
     position: fixed;
     bottom: var(--space-4);
@@ -695,7 +688,7 @@
     box-shadow: var(--shadow-xl);
 }
 
-/* ============ SCROLL PROGRESS ============ */
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -707,7 +700,7 @@
     transition: width 0.1s ease;
 }
 
-/* ============ RESPONSIVE UTILITIES ============ */
+
 @media (max-width: 768px) {
     .toast-container {
         left: var(--space-2);
