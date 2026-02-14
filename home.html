@@ -8,14 +8,14 @@
 
 <body>
     <main layout:fragment="content">
-        <!-- Announcement Bar Move to inside content or layout if needed, but keeping it here for home specificity -->
+        
         <div class="announcement-bar">
             <div class="announcement-content">
                 <span class="announcement-item" th:each="item : ${announcementItems}" th:text="${item}">Free Shipping on Orders Over LKR 50</span>
             </div>
         </div>
 
-        <!-- Hero Section with Parallax -->
+        
         <section class="hero-premium">
             <div class="hero-bg-animation"></div>
             <div class="hero-content-wrapper">
@@ -60,7 +60,7 @@
             </div>
         </section>
 
-        <!-- Featured Categories -->
+        
         <section class="categories-section" id="categories">
             <div class="container">
                 <h2 class="section-title">Explore by Category</h2>
@@ -79,7 +79,7 @@
             </div>
         </section>
 
-        <!-- Trending Books Carousel -->
+        
         <section class="trending-section">
             <div class="container">
                 <div class="section-header">
@@ -135,7 +135,7 @@
             </div>
         </section>
 
-        <!-- Flash Sale Section -->
+        
         <section class="flash-sale-section">
             <div class="container">
                 <div class="flash-sale-content">
@@ -165,7 +165,7 @@
             </div>
         </section>
 
-        <!-- Fresh Arrivals -->
+        
         <section class="arrivals-section" th:if="${not #lists.isEmpty(recentBooks)}">
             <div class="container">
                 <h2 class="section-title">Fresh Arrivals</h2>
@@ -211,7 +211,7 @@
             </div>
         </section>
 
-        <!-- Customer Reviews Carousel -->
+        
         <section class="reviews-section">
             <div class="container">
                 <h2 class="section-title">What Our Readers Say</h2>
@@ -277,7 +277,7 @@
             </div>
         </section>
 
-        <!-- Newsletter Section -->
+        
         <section class="newsletter-section">
             <div class="container">
                 <div class="newsletter-content">
@@ -302,6 +302,7 @@
 </body>
 
 </html>
+
 
 
 
