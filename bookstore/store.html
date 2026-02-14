@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BookWorm | Store</title>
+
+<style>
+body{margin:0;font-family:Segoe UI;background:#f4f4f4}
+nav{background:#1e1e2f;color:white;padding:15px 30px;display:flex;justify-content:space-between;align-items:center}
+nav a{color:#ffb703;text-decoration:none;margin:0 15px;font-weight:bold}
+nav input.search{padding:5px 10px;border-radius:5px;border:none}
+.container{padding:30px}
+.books{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:25px;
+}
+.book{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+    text-align:center;
+}
+.book img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:10px;
+}
+.book button{
+    width:100%;
+    padding:10px;
+    background:#ffb703;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+footer{background:#1e1e2f;color:white;text-align:center;padding:20px;margin-top:20px}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>📚 BookWorm</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="store.html">Store</a>
+<a href="#" id="signOutBtn">Sign Out</a>
+<input type="text" id="search" class="search" placeholder="Search books...">
+</div>
+</nav>
+
+<div class="container">
+<h2>All Books</h2><br>
+<div class="books" id="bookList"></div>
+</div>
+
+<footer>
+<p>© 2026 BookWorm | Follow us 🌐</p>
+</footer>
+
+<script>
+// Check login
+if(localStorage.getItem("loggedIn") !== "true"){
+    alert("Please sign in first!");
+    window.location.href = "signin.html";
+}
+
+// Sign out button
+document.getElementById("signOutBtn").addEventListener("click", function(){
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userEmail");
+    alert("Signed out successfully!");
+    window.location.href = "index.html";
+});
+
+// Book data
+const categories=["Fiction","Romance","Thriller","Technology","Self Help","Fantasy"];
+const books=[];
+for(let i=1;i<=50;i++){ // Changed from 60 to 50
+    books.push({
+        id:i,
+        title:"Book "+i,
+        author:"Author "+i,
+        price:500+i*10,
+        category:categories[i%6],
+        img:"https://picsum.photos/200/300?random="+i,
+        desc:"This book explores emotions, knowledge, and imagination."
+    });
+}
+
+// Display books
+const list=document.getElementById("bookList");
+function displayBooks(filter=""){
+    list.innerHTML="";
+    let catFilter = localStorage.getItem("category") || "";
+    books.filter(b => 
+        (b.title.toLowerCase().includes(filter.toLowerCase()) ||
+         b.category.toLowerCase().includes(filter.toLowerCase()))
+         && (catFilter=="" || b.category==catFilter)
+    ).forEach(b=>{
+        list.innerHTML+=`
+        <div class="book">
+            <img src="${b.img}">
+            <h3>${b.title}</h3>
+            <p>${b.author}</p>
+            <p>Rs. ${b.price}</p>
+            <a href="book.html?id=${b.id}">
+                <button>View Details</button>
+            </a>
+        </div>`;
+    });
+}
+
+displayBooks();
+
+// Search functionality
+document.getElementById("search").addEventListener("input", function(){
+    displayBooks(this.value);
+});
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cart Success</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.success-container {
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 500px;
+    animation: popIn 0.8s ease;
+}
+.success-container h1 {
+    color: #1e1e2f;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+.success-container p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+}
+.success-container button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background: #ffb703;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.success-container button:hover {
+    background: #e89b00;
+}
+@keyframes popIn {
+    0% {transform: scale(0.5); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffb703;
+    top: 0;
+    animation: fall 2s linear infinite;
+}
+@keyframes fall {
+    0% {transform: translateY(0) rotate(0deg);}
+    100% {transform: translateY(800px) rotate(360deg);}
+}
+</style>
+</head>
+<body>
+
+<div class="success-container" id="successMsg">
+    <h1>🎉 Added to Cart Successfully!</h1>
+    <p id="bookName">Your book is now in the cart.</p>
+    <button onclick="window.location.href='store.html'">Back to Store 🏪</button>
+</div>
+
+<script>
+// Get book title from URL
+const params = new URLSearchParams(window.location.search);
+const title = params.get("title");
+if(title){
+    document.getElementById("bookName").textContent = `"${title}" has been added to your cart!`;
+}
+
+// Create some confetti effect
+for(let i=0;i<50;i++){
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+    confetti.style.animationDuration = 1 + Math.random()*2 + "s";
+    confetti.style.width = 5 + Math.random()*10 + "px";
+    confetti.style.height = 5 + Math.random()*10 + "px";
+    document.body.appendChild(confetti);
+}
+</script>
+
+</body>
+</html>

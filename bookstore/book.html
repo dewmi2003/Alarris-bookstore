@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Details</title>
+
+<style>
+body{margin:0;font-family:Segoe UI;background:#f4f4f4}
+nav{background:#1e1e2f;color:white;padding:15px 30px}
+nav a{color:#ffb703;text-decoration:none}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    margin-top:40px;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+    display:flex;
+    gap:30px;
+}
+.container img{
+    width:300px;
+    border-radius:15px;
+}
+button{
+    padding:12px 25px;
+    background:#ffb703;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+button:hover{
+    background:#e89b00;
+}
+input[type="number"]{
+    width:60px;
+    padding:5px;
+    font-size:16px;
+    margin-left:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+.price{
+    font-size:20px;
+    font-weight:bold;
+    margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="store.html">⬅ Back to Store</a>
+</nav>
+
+<div class="container" id="details"></div>
+
+<script>
+const books=[];
+for(let i=1;i<=60;i++){
+    books.push({
+        id:i,
+        title:"Book "+i,
+        author:"Author "+i,
+        price:500+i*10,
+        category:["Fiction","Romance","Thriller","Technology","Self Help","Fantasy"][i%6],
+        img:"https://picsum.photos/300/400?random="+i,
+        desc:"A beautifully written book that inspires and educates readers."
+    });
+}
+
+const params=new URLSearchParams(window.location.search);
+const id=parseInt(params.get("id"));
+const book=books.find(b=>b.id===id);
+
+document.getElementById("details").innerHTML=`
+<img src="${book.img}">
+<div>
+<h1>${book.title}</h1>
+<p><b>Author:</b> ${book.author}</p>
+<p><b>Category:</b> ${book.category}</p>
+<p class="price"><b>Price:</b> Rs. <span id="bookPrice">${book.price}</span></p>
+<p>
+    <b>Quantity:</b> 
+    <input type="number" id="quantity" value="1" min="1">
+</p><br>
+<p>${book.desc}</p><br>
+<button id="addCartBtn">Add to Cart 🛒</button>
+</div>
+`;
+
+const priceEl = document.getElementById("bookPrice");
+const quantityInput = document.getElementById("quantity");
+
+// Update price dynamically based on quantity
+quantityInput.addEventListener("input", () => {
+    let qty = parseInt(quantityInput.value);
+    if(qty < 1) qty = 1;
+    priceEl.textContent = book.price * qty;
+});
+
+// Add to cart button passes both title and quantity
+document.getElementById("addCartBtn").addEventListener("click", () => {
+    const qty = parseInt(quantityInput.value);
+    window.location.href = `cart-success.html?title=${encodeURIComponent(book.title)}&quantity=${qty}`;
+});
+</script>
+
+</body>
+</html>
+

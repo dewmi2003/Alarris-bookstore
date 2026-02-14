@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BookWorm | Sign In</title>
+<style>
+body{margin:0;font-family:Segoe UI;background:#f4f4f4;display:flex;justify-content:center;align-items:center;height:100vh}
+.container{background:white;padding:40px;border-radius:15px;box-shadow:0 10px 20px rgba(0,0,0,.1);width:350px;text-align:center}
+input{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:1px solid #ccc}
+button{padding:10px 20px;background:#ffb703;border:none;border-radius:5px;cursor:pointer;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Sign In</h2>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+<button id="loginBtn">Sign In</button>
+</div>
+
+<script>
+document.getElementById("loginBtn").addEventListener("click", function(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(email && password){
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("userEmail", email);
+        alert("Signed in successfully!");
+        window.location.href = "store.html";
+    } else {
+        alert("Please enter email and password!");
+    }
+});
+</script>
+</body>
+</html>
+
+
+

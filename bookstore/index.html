@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BookWorm | Home</title>
+<style>
+body{margin:0;font-family:Segoe UI;background:#f4f4f4}
+nav{
+    background:#1e1e2f;color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+nav a{color:#ffb703;text-decoration:none;margin:0 10px;font-weight:bold;cursor:pointer;position:relative;}
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url('https://images.unsplash.com/photo-1512820790803-83ca734da794');
+    background-size:cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-align:center;
+    flex-direction:column;
+}
+.hero h1{font-size:60px}
+.hero button{
+    padding:15px 30px;
+    background:#ffb703;
+    border:none;
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:15px;
+}
+.categories{
+    padding:50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+.cat{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+    text-align:center;
+    cursor:pointer;
+    transition:transform 0.2s;
+}
+.cat:hover{transform:scale(1.05);}
+footer{background:#1e1e2f;color:white;text-align:center;padding:20px}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1e2f;
+    min-width: 150px;
+    z-index: 1;
+    top: 35px;
+    border-radius: 5px;
+}
+.dropdown-content a {
+    color: #ffb703;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #333;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>📚 BookWorm</h2>
+<div>
+<a onclick="showAllBooks()">All Books</a>
+
+<!-- Categories Dropdown -->
+<div class="dropdown">
+    <a>Categories ▾</a>
+    <div class="dropdown-content">
+        <a onclick="goCategory('Fiction')">Fiction</a>
+        <a onclick="goCategory('Romance')">Romance</a>
+        <a onclick="goCategory('Thriller')">Thriller</a>
+        <a onclick="goCategory('Technology')">Technology</a>
+        <a onclick="goCategory('Self Help')">Self Help</a>
+        <a onclick="goCategory('Fantasy')">Fantasy</a>
+    </div>
+</div>
+
+<a href="signin.html">Sign In</a>
+<a href="contactus.html">Contact</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Read. Dream. Grow.</h1>
+<p>Discover books that change your life</p>
+<button id="exploreBtn">Explore Books</button>
+</div>
+
+<section class="categories">
+<div class="cat" onclick="goCategory('Fiction')">📖 Fiction</div>
+<div class="cat" onclick="goCategory('Romance')">💖 Romance</div>
+<div class="cat" onclick="goCategory('Thriller')">🕵 Thriller</div>
+<div class="cat" onclick="goCategory('Technology')">💻 Technology</div>
+<div class="cat" onclick="goCategory('Self Help')">🌱 Self Help</div>
+<div class="cat" onclick="goCategory('Fantasy')">🧙 Fantasy</div>
+</section>
+
+<footer>
+<p>© 2026 BookWorm | Follow us 🌐</p>
+</footer>
+
+<script>
+// Explore Books button -> show all books
+document.getElementById("exploreBtn").addEventListener("click", function(){
+    if(localStorage.getItem("loggedIn") === "true"){
+        localStorage.removeItem("category"); // no filter -> all books
+        window.location.href = "store.html";
+    } else {
+        alert("Please sign in first!");
+        window.location.href = "signin.html";
+    }
+});
+
+// Go to specific category
+function goCategory(cat){
+    localStorage.setItem("category", cat); // save selected category
+    if(localStorage.getItem("loggedIn") === "true"){
+        window.location.href = "store.html";
+    } else {
+        alert("Please sign in first!");
+        window.location.href = "signin.html";
+    }
+}
+
+// Show all books
+function showAllBooks(){
+    localStorage.removeItem("category"); // remove filter
+    if(localStorage.getItem("loggedIn") === "true"){
+        window.location.href = "store.html";
+    } else {
+        alert("Please sign in first!");
+        window.location.href = "signin.html";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
