@@ -32,7 +32,7 @@ public class BookController {
         List<Book> books = bookService.findAllBooks();
         List<Book> featured = bookService.findFeaturedBooks();
 
-        // If no books are featured, fallback to first 4 books
+        
         if (featured.isEmpty()) {
             featured = books.stream().limit(4).toList();
         }
@@ -86,3 +86,4 @@ public class BookController {
         return "book_details";
     }
 }
+
