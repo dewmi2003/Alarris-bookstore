@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Login - Alariis Bookstore</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .auth-section {
+                min-height: calc(100vh - 130px);
+                display: flex;
+                align-items: center;
+                background:
+                    radial-gradient(circle at top right, rgba(79, 70, 229, 0.14), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(55, 48, 163, 0.1), transparent 45%),
+                    var(--bg-soft-white);
+                padding: var(--space-6) 0;
+            }
+
+            .auth-shell {
+                max-width: 560px;
+                margin: 0 auto;
+            }
+
+            .auth-card {
+                background: var(--bg-card);
+                border-radius: var(--radius-xl);
+                padding: var(--space-5);
+                border: 1px solid rgba(79, 70, 229, 0.12);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .auth-title {
+                text-align: center;
+                margin-bottom: var(--space-4);
+            }
+
+            .auth-title i {
+                font-size: 2.8rem;
+                color: var(--primary-indigo);
+                margin-bottom: var(--space-2);
+                display: inline-block;
+            }
+
+            .auth-submit {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-full);
+                border: 1px solid rgba(99, 102, 241, 0.45);
+                background: rgba(255, 255, 255, 0.08);
+                color: var(--primary-indigo);
+                font-weight: 700;
+                cursor: pointer;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                transition: all 0.2s ease;
+            }
+
+            .auth-submit:hover {
+                background: rgba(99, 102, 241, 0.14);
+                border-color: rgba(99, 102, 241, 0.75);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 14px rgba(79, 70, 229, 0.18);
+            }
+
+            [data-theme="dark"] .auth-section {
+                background:
+                    radial-gradient(circle at top right, rgba(99, 102, 241, 0.18), transparent 45%),
+                    radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.12), transparent 50%),
+                    var(--bg-soft-white);
+            }
+
+            [data-theme="dark"] .auth-card {
+                border-color: rgba(129, 140, 248, 0.24);
+                box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+            }
+
+            [data-theme="dark"] .auth-submit {
+                color: #c7d2fe;
+                border-color: rgba(129, 140, 248, 0.42);
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            [data-theme="dark"] .auth-submit:hover {
+                background: rgba(129, 140, 248, 0.16);
+                border-color: rgba(165, 180, 252, 0.78);
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <section class="auth-section">
+            <div class="container auth-shell">
+                <div class="auth-card scroll-animate">
+                    <div class="auth-title">
+                        <i class="fas fa-book-reader"></i>
+                        <h1 class="text-4xl font-black text-indigo mb-2">Welcome Back</h1>
+                        <p class="text-secondary">Sign in to continue your reading journey.</p>
+                    </div>
+
+                    <div th:if="${param.logout}" class="alert alert-success mb-4">
+                        <i class="fas fa-info-circle"></i> You have been logged out.
+                    </div>
+                    <div th:if="${param.error}" class="alert alert-error mb-4">
+                        <i class="fas fa-exclamation-circle"></i> Invalid email or password.
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group mb-4">
+                            <label for="username"><i class="fas fa-envelope text-tertiary"></i> Email Address</label>
+                            <input type="email" id="username" name="username" class="form-control" required autofocus
+                                placeholder="name@example.com">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password"><i class="fas fa-lock text-tertiary"></i> Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required
+                                placeholder="Enter your password">
+                        </div>
+
+                        <button type="submit" class="auth-submit">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+
+                        <p class="text-secondary mt-4 text-center">
+                            New to Alariis?
+                            <a th:href="@{/register}" class="font-black text-indigo">Create Account</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+
+
+

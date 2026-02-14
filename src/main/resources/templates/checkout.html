@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Secure Checkout - Alariis Bookstore</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .checkout-grid {
+                display: grid;
+                grid-template-columns: 1fr 400px;
+                gap: var(--space-6);
+                align-items: start;
+            }
+
+            .checkout-card {
+                background: var(--bg-white);
+                border-radius: var(--radius-xl);
+                padding: var(--space-6);
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--bg-light-gray);
+                margin-bottom: var(--space-4);
+            }
+
+            .payment-option {
+                border: 2px solid var(--bg-light-gray);
+                border-radius: var(--radius-lg);
+                padding: var(--space-3);
+                margin-bottom: var(--space-2);
+                cursor: pointer;
+                transition: var(--transition-fast);
+                display: flex;
+                align-items: center;
+                gap: var(--space-3);
+            }
+
+            .payment-option:hover {
+                border-color: var(--primary-indigo);
+                background: var(--bg-soft-white);
+            }
+
+            .payment-option input[type="radio"]:checked+label {
+                color: var(--primary-indigo);
+            }
+
+            .payment-option.active {
+                border-color: var(--primary-indigo);
+                background: rgba(79, 70, 229, 0.05);
+            }
+
+            @media (max-width: 992px) {
+                .checkout-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <div class="container mt-4 mb-10">
+            <h1 class="mb-6"><i class="fas fa-shield-alt text-success"></i> Finalize Your Order</h1>
+
+            <form th:action="@{/checkout/process}" method="post" class="checkout-grid">
+                <!-- Left Column: Details -->
+                <div class="checkout-details">
+                    <!-- Shipping Section -->
+                    <div class="checkout-card scroll-animate">
+                        <h2 class="mb-4 flex items-center gap-2">
+                            <i class="fas fa-truck text-indigo"></i> 1. Shipping Information
+                        </h2>
+                        <div class="form-group mb-3">
+                            <label for="fullName">Recipient Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control"
+                                placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="address">Delivery Address</label>
+                            <input type="text" id="address" name="address" class="form-control"
+                                placeholder="House number and street name" required>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2"
+                            style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" class="form-control" placeholder="e.g. Colombo"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Postal Code</label>
+                                <input type="text" id="zip" name="zip" class="form-control" placeholder="e.g. 10115"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="checkout-card scroll-animate">
+                        <h2 class="mb-4 flex items-center gap-2">
+                            <i class="fas fa-credit-card text-indigo"></i> 2. Payment Method
+                        </h2>
+
+                        <div class="payment-methods flex flex-col gap-2">
+                            <label class="payment-option active" onclick="selectPayment(this)">
+                                <input type="radio" name="paymentMethod" value="Card" checked
+                                    onchange="toggleCardDetails(true)">
+                                <div class="flex-grow">
+                                    <span class="font-bold">Credit / Debit Card</span>
+                                    <p class="text-xs text-secondary">Visa, Mastercard, AMEX</p>
+                                </div>
+                                <div class="flex gap-1">
+                                    <i class="fab fa-cc-visa text-gray"></i>
+                                    <i class="fab fa-cc-mastercard text-gray"></i>
+                                </div>
+                            </label>
+
+                            <label class="payment-option" onclick="selectPayment(this)">
+                                <input type="radio" name="paymentMethod" value="Cash on Delivery"
+                                    onchange="toggleCardDetails(false)">
+                                <div class="flex-grow">
+                                    <span class="font-bold">Cash on Delivery</span>
+                                    <p class="text-xs text-secondary">Pay when you receive</p>
+                                </div>
+                                <i class="fas fa-hand-holding-usd text-success"></i>
+                            </label>
+
+                            <label class="payment-option" onclick="selectPayment(this)">
+                                <input type="radio" name="paymentMethod" value="Koko"
+                                    onchange="toggleCardDetails(false)">
+                                <div class="flex-grow">
+                                    <span class="font-bold">Koko</span>
+                                    <p class="text-xs text-secondary">Buy now, pay later</p>
+                                </div>
+                                <i class="fas fa-wallet text-indigo"></i>
+                            </label>
+
+                            <label class="payment-option" onclick="selectPayment(this)">
+                                <input type="radio" name="paymentMethod" value="Direct Payment"
+                                    onchange="toggleCardDetails(false)">
+                                <div class="flex-grow">
+                                    <span class="font-bold">Direct Payment</span>
+                                    <p class="text-xs text-secondary">Pay directly from your bank</p>
+                                </div>
+                                <i class="fas fa-university text-tertiary"></i>
+                            </label>
+                        </div>
+
+                        <!-- Card Details (Collapsible) -->
+                        <div id="card-form" class="mt-4 p-4 bg-soft-white rounded-lg border">
+                            <div class="form-group mb-3">
+                                <label>Card Number</label>
+                                <div class="flex items-center" style="position: relative;">
+                                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000"
+                                        maxlength="19">
+                                    <i class="fas fa-lock text-tertiary" style="position: absolute; right: 1rem;"></i>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2"
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);">
+                                <div class="form-group">
+                                    <label>Expiry (MM/YY)</label>
+                                    <input type="text" class="form-control" placeholder="12/26" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <input type="text" class="form-control" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Summary -->
+                <aside class="checkout-summary scroll-animate">
+                    <div class="card p-6"
+                        style="background: var(--bg-white); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--bg-light-gray); position: sticky; top: 100px;">
+                        <h3 class="mb-4 border-bottom pb-2">Order Review</h3>
+
+                        <div class="checkout-items-summary mb-4" style="max-height: 200px; overflow-y: auto;">
+                            <div th:each="item : ${cartItems}"
+                                class="flex justify-between items-center mb-2 pb-2 border-bottom"
+                                style="border-bottom: 1px dashed var(--bg-light-gray);">
+                                <div class="flex items-center gap-2">
+                                    <div class="text-xs font-bold bg-light-gray px-2 py-1 rounded"
+                                        th:text="${item.quantity} + 'x'">1x</div>
+                                    <div class="text-sm font-semibold truncate" style="max-width: 150px;"
+                                        th:text="${item.book.title}">Book Title</div>
+                                </div>
+                                <div class="text-sm font-bold text-indigo"
+                                    th:text="'LKR ' + ${#numbers.formatDecimal(item.book.price * item.quantity, 1, 2)}">
+                                    LKR 0.00</div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between mb-2">
+                            <span class="text-secondary font-bold">Subtotal</span>
+                            <span class="font-bold"
+                                th:text="'LKR ' + ${#numbers.formatDecimal(totalAmount, 1, 2)}">LKR 0.00</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-secondary">Shipping</span>
+                            <span class="text-success font-bold">FREE</span>
+                        </div>
+
+                        <div class="flex justify-between items-center mt-4 pt-4 border-top">
+                            <span class="text-lg font-bold">Total Amount</span>
+                            <span class="text-2xl font-black text-indigo"
+                                th:text="'LKR ' + ${#numbers.formatDecimal(totalAmount, 1, 2)}">LKR 0.00</span>
+                        </div>
+
+                        <p class="text-xs text-tertiary mt-2 italic">
+                            By clicking "Confirm Order" you agree to our Terms of Service. No real payment is processed
+                            in this staging environment.
+                        </p>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-full mt-6" style="width: 100%;">
+                            <i class="fas fa-check-circle"></i> Confirm Order
+                        </button>
+
+                        <a th:href="@{/cart}" class="btn btn-ghost w-full mt-2" style="width: 100%;">
+                            <i class="fas fa-arrow-left"></i> Return to Cart
+                        </a>
+
+                        <div class="mt-6 flex justify-center gap-4 text-tertiary grayscale">
+                            <i class="fas fa-shield-virus fa-2x"></i>
+                            <i class="fas fa-user-shield fa-2x"></i>
+                            <i class="fas fa-lock fa-2x"></i>
+                        </div>
+                    </div>
+                </aside>
+            </form>
+        </div>
+    </main>
+
+    <th:block layout:fragment="extra-js">
+        <script>
+            function selectPayment(el) {
+                document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
+                el.classList.add('active');
+            }
+
+            function toggleCardDetails(show) {
+                const form = document.getElementById('card-form');
+                form.style.display = show ? 'block' : 'none';
+                form.querySelectorAll('input').forEach(i => i.required = show);
+            }
+
+            // Initialize card details visibility on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                const initialPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+                if (initialPaymentMethod) {
+                    toggleCardDetails(initialPaymentMethod.value === 'Card');
+                    selectPayment(initialPaymentMethod.closest('.payment-option'));
+                }
+            });
+        </script>
+    </th:block>
+</body>
+
+</html>
+
+
+

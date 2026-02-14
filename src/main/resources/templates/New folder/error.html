@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Something Went Wrong - Alariis Bookstore</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .error-container {
+                min-height: 70vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: var(--space-8) 0;
+            }
+
+            .error-code {
+                font-size: 8rem;
+                font-weight: 900;
+                background: var(--gradient-primary);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                line-height: 1;
+                margin-bottom: var(--space-4);
+            }
+
+            .error-illustration {
+                font-size: 5rem;
+                color: var(--bg-light-gray);
+                margin-bottom: var(--space-6);
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <div class="container">
+            <div class="error-container scroll-animate">
+                <div class="error-illustration">
+                    <i class="fas fa-book-dead"></i>
+                </div>
+
+                <h1 class="error-code">Oops!</h1>
+                <h2 class="text-3xl font-black text-indigo mb-6">Something unexpected happened</h2>
+
+                <div th:if="${error}" class="mb-8 p-6 bg-error-light border border-error rounded-xl max-w-2xl mx-auto">
+                    <p class="text-error font-medium" th:text="${error}">Error details appear here.</p>
+                </div>
+
+                <p class="text-secondary text-lg mb-10 max-w-lg mx-auto">
+                    We apologize for the inconvenience. Our librarians are already looking into the issue.
+                    In the meantime, feel free to head back to safer waters.
+                </p>
+
+                <div class="flex gap-4">
+                    <a th:href="@{/}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home"></i> Return Home
+                    </a>
+                    <button onclick="window.history.back()" class="btn btn-outline btn-lg">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+

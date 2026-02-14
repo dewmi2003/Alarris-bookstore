@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>401 - Unauthorized</title>
+    <style>
+        .error-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        [data-theme="dark"] .error-container {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .error-code {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f39c12, #d68910);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .error-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .error-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .error-btn-secondary {
+            background: #27ae60;
+        }
+
+        [data-theme="dark"] .error-btn-secondary {
+            background: #229954;
+        }
+
+        .error-btn-tertiary {
+            background: #95a5a6;
+        }
+
+        [data-theme="dark"] .error-btn-tertiary {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+
+<body>
+    <main layout:fragment="content">
+        <div class="error-container">
+            <div class="error-code">401</div>
+            <h1 class="error-title">Unauthorized</h1>
+            <p class="error-description">
+                You need to be logged in to access this page. Please login to continue.
+            </p>
+            <div class="error-actions">
+                <a th:href="@{/login}" class="error-btn">Login</a>
+                <a th:href="@{/register}" class="error-btn error-btn-secondary">Create Account</a>
+                <a th:href="@{/}" class="error-btn error-btn-tertiary">Go to Home</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+
+

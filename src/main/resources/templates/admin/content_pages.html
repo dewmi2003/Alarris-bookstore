@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Manage Website Content</title>
+</head>
+
+<body>
+    <main layout:fragment="content" class="admin-manage-page">
+        <div class="container mt-4">
+            <div class="flex justify-between items-center mb-4">
+                <h1>Manage Website Content</h1>
+                <a th:href="@{/admin/dashboard}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+
+            <div th:if="${param.saved}" class="alert alert-success mb-4">
+                <i class="fas fa-check-circle"></i>
+                <span>Page content updated successfully.</span>
+            </div>
+
+            <div class="grid" style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <article th:each="page : ${pages}" class="card" style="padding: 1.1rem; border-radius: 18px;">
+                    <span class="badge badge-secondary mb-2" th:text="${#strings.toUpperCase(page.pageKey)}">HOME</span>
+                    <h3 class="mb-2" th:text="${page.title}">Page title</h3>
+                    <p class="text-secondary mb-4" th:text="${page.subtitle}">Subtitle</p>
+                    <a th:href="@{'/admin/content/edit/' + ${page.pageKey}}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </article>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

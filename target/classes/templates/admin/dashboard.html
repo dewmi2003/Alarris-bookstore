@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .admin-dash {
+                padding: var(--space-4) 0;
+            }
+
+            .admin-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: var(--space-2);
+                flex-wrap: wrap;
+                margin-bottom: var(--space-3);
+            }
+
+            .admin-head h1 {
+                margin: 0;
+            }
+
+            .admin-head p {
+                margin: 0;
+                color: var(--text-secondary);
+            }
+
+            .admin-actions {
+                display: flex;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+            }
+
+            .dash-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                padding: 0.36rem 0.8rem;
+                border-radius: 999px;
+                border: 1px solid rgba(99, 102, 241, 0.45);
+                background: rgba(255, 255, 255, 0.08);
+                color: var(--primary-indigo);
+                text-decoration: none;
+                font-size: 0.82rem;
+                font-weight: 700;
+                line-height: 1;
+                transition: all 0.22s ease;
+            }
+
+            .dash-pill:hover {
+                background: rgba(99, 102, 241, 0.14);
+                border-color: rgba(99, 102, 241, 0.75);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 14px rgba(79, 70, 229, 0.18);
+            }
+
+            .kpi-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: var(--space-2);
+                margin-bottom: var(--space-3);
+            }
+
+            .kpi-card {
+                background: var(--bg-card);
+                border-radius: var(--radius-lg);
+                border: 1px solid rgba(79, 70, 229, 0.14);
+                box-shadow: var(--shadow-sm);
+                padding: var(--space-2);
+            }
+
+            .kpi-title {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .kpi-value {
+                font-size: 1.7rem;
+                font-weight: 800;
+                color: var(--text-primary);
+                line-height: 1.2;
+            }
+
+            .kpi-trend {
+                margin-top: 0.45rem;
+                font-size: 0.78rem;
+                font-weight: 700;
+            }
+
+            .kpi-up {
+                color: var(--success);
+            }
+
+            .kpi-down {
+                color: var(--error);
+            }
+
+            .dash-main-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: var(--space-3);
+            }
+
+            .dash-panel {
+                background: var(--bg-card);
+                border: 1px solid rgba(79, 70, 229, 0.14);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-sm);
+                padding: var(--space-3);
+            }
+
+            .panel-title {
+                margin-bottom: var(--space-2);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: var(--space-1);
+            }
+
+            .panel-title h3 {
+                margin: 0;
+                font-size: 1.05rem;
+            }
+
+            .mini-note {
+                color: var(--text-tertiary);
+                font-size: 0.78rem;
+            }
+
+            .bars {
+                display: grid;
+                grid-template-columns: repeat(7, minmax(0, 1fr));
+                gap: 0.65rem;
+                align-items: end;
+                min-height: 220px;
+                padding-top: var(--space-2);
+            }
+
+            .bar-wrap {
+                text-align: center;
+            }
+
+            .bar {
+                width: 100%;
+                border-radius: 10px 10px 4px 4px;
+                background: linear-gradient(180deg, #6366f1 0%, #3730a3 100%);
+                height: 20px;
+                transition: height 0.7s ease;
+                box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+            }
+
+            .bar-label {
+                margin-top: 0.45rem;
+                font-size: 0.72rem;
+                color: var(--text-tertiary);
+                text-transform: uppercase;
+            }
+
+            .bar-value {
+                font-size: 0.74rem;
+                font-weight: 700;
+                color: var(--text-secondary);
+                margin-bottom: 0.28rem;
+            }
+
+            .pie {
+                width: 190px;
+                height: 190px;
+                margin: 0 auto var(--space-2);
+                border-radius: 50%;
+                background:
+                    conic-gradient(#10b981 0 58%,
+                        #3b82f6 58% 83%,
+                        #f59e0b 83% 95%,
+                        #ef4444 95% 100%);
+                box-shadow: var(--shadow-md);
+                position: relative;
+            }
+
+            .pie::after {
+                content: 'Orders';
+                position: absolute;
+                inset: 30px;
+                background: var(--bg-card);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+                font-size: 0.82rem;
+                font-weight: 700;
+                border: 1px solid rgba(79, 70, 229, 0.12);
+            }
+
+            .legend {
+                display: grid;
+                gap: 0.45rem;
+            }
+
+            .legend-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 0.83rem;
+                color: var(--text-secondary);
+            }
+
+            .legend-key {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 999px;
+            }
+
+            .dot-delivered {
+                background: #10b981;
+            }
+
+            .dot-shipped {
+                background: #3b82f6;
+            }
+
+            .dot-pending {
+                background: #f59e0b;
+            }
+
+            .dot-cancelled {
+                background: #ef4444;
+            }
+
+            .quick-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: var(--space-2);
+                margin-top: var(--space-3);
+            }
+
+            .quick-card {
+                background: var(--bg-card);
+                border-radius: var(--radius-lg);
+                border: 1px solid rgba(79, 70, 229, 0.14);
+                box-shadow: var(--shadow-sm);
+                padding: var(--space-2);
+            }
+
+            .quick-card h4 {
+                margin: 0 0 0.45rem 0;
+                font-size: 1rem;
+            }
+
+            .quick-card p {
+                margin: 0 0 0.8rem 0;
+                color: var(--text-secondary);
+                font-size: 0.86rem;
+            }
+
+            [data-theme="dark"] .dash-pill {
+                color: #c7d2fe;
+                border-color: rgba(129, 140, 248, 0.42);
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            [data-theme="dark"] .dash-pill:hover {
+                background: rgba(129, 140, 248, 0.16);
+                border-color: rgba(165, 180, 252, 0.78);
+            }
+
+            [data-theme="dark"] .kpi-card,
+            [data-theme="dark"] .dash-panel,
+            [data-theme="dark"] .quick-card {
+                border-color: rgba(129, 140, 248, 0.22);
+                box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+            }
+
+            @media (max-width: 1200px) {
+                .kpi-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .dash-main-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 700px) {
+                .kpi-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .quick-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .bars {
+                    gap: 0.4rem;
+                }
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content" class="admin-dash">
+        <div class="container">
+            <div class="admin-head">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Live sales overview based on real orders in the system.</p>
+                </div>
+                <div class="admin-actions">
+                    <a th:href="@{/admin/books}" class="dash-pill"><i class="fas fa-book"></i> Books</a>
+                    <a th:href="@{/admin/orders}" class="dash-pill"><i class="fas fa-shopping-bag"></i> Orders</a>
+                    <a th:href="@{/admin/categories}" class="dash-pill"><i class="fas fa-tags"></i> Categories</a>
+                    <a th:href="@{/admin/users}" class="dash-pill"><i class="fas fa-users"></i> Users</a>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Total Revenue</div>
+                    <div class="kpi-value"
+                        th:text="'LKR ' + ${#numbers.formatDecimal(totalRevenue, 1, 2)}">LKR 0.00</div>
+                    <div class="kpi-trend"
+                        th:classappend="${revenueTrendPct >= 0 ? ' kpi-up' : ' kpi-down'}">
+                        <i th:class="${revenueTrendPct >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'}"></i>
+                        <span th:text="${#numbers.formatDecimal(revenueTrendPct, 1, 2)} + '% vs previous 7 days'">0%</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Orders Processed</div>
+                    <div class="kpi-value" th:text="${totalOrders}">0</div>
+                    <div class="kpi-trend kpi-up"><i class="fas fa-calendar-week"></i> All-time processed orders</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Avg. Order Value</div>
+                    <div class="kpi-value"
+                        th:text="'LKR ' + ${#numbers.formatDecimal(avgOrderValue, 1, 2)}">LKR 0.00</div>
+                    <div class="kpi-trend kpi-up"><i class="fas fa-calculator"></i> Based on all orders</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Pending Fulfillment</div>
+                    <div class="kpi-value" th:text="${pendingOrders}">0</div>
+                    <div class="kpi-trend kpi-up"><i class="fas fa-clock"></i> Needs attention</div>
+                </div>
+            </div>
+
+            <div class="dash-main-grid">
+                <section class="dash-panel">
+                    <div class="panel-title">
+                        <h3><i class="fas fa-chart-column text-indigo"></i> 7-Day Sales Analysis</h3>
+                        <span class="mini-note"
+                            th:text="'Total: LKR ' + ${#numbers.formatDecimal(last7Revenue, 1, 2)}">Total: LKR 0.00</span>
+                    </div>
+                    <div class="bars" id="salesBars">
+                        <div class="bar-wrap" th:each="label, iter : ${salesLabels}">
+                            <div class="bar-value"
+                                th:text="'LKR ' + ${#numbers.formatDecimal(salesValues[iter.index], 1, 2)}">LKR 0.00</div>
+                            <div class="bar" th:attr="data-height=${salesHeights[iter.index]}"></div>
+                            <div class="bar-label" th:text="${label}">MON</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dash-panel">
+                    <div class="panel-title">
+                        <h3><i class="fas fa-chart-pie text-indigo"></i> Order Status</h3>
+                        <span class="mini-note">Live split by current order statuses</span>
+                    </div>
+                    <div class="pie" th:style="${pieChartStyle}"></div>
+                    <div class="legend">
+                        <div class="legend-row">
+                            <span class="legend-key"><span class="dot dot-delivered"></span>Delivered</span><strong
+                                th:text="${#numbers.formatDecimal(deliveredPct, 1, 2)} + '%'">0%</strong>
+                        </div>
+                        <div class="legend-row">
+                            <span class="legend-key"><span class="dot dot-shipped"></span>Shipped</span><strong
+                                th:text="${#numbers.formatDecimal(shippedPct, 1, 2)} + '%'">0%</strong>
+                        </div>
+                        <div class="legend-row">
+                            <span class="legend-key"><span class="dot dot-pending"></span>Pending</span><strong
+                                th:text="${#numbers.formatDecimal(pendingPct, 1, 2)} + '%'">0%</strong>
+                        </div>
+                        <div class="legend-row">
+                            <span class="legend-key"><span class="dot dot-cancelled"></span>Cancelled</span><strong
+                                th:text="${#numbers.formatDecimal(cancelledPct, 1, 2)} + '%'">0%</strong>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="quick-grid">
+                <article class="quick-card">
+                    <h4><i class="fas fa-truck text-indigo"></i> Fulfillment Queue</h4>
+                    <p>
+                        <span th:text="${pendingOrders}">0</span> pending,
+                        <span th:text="${shippedOrders}">0</span> shipped orders currently.
+                    </p>
+                    <a th:href="@{/admin/orders}" class="dash-pill">Open Orders</a>
+                </article>
+                <article class="quick-card">
+                    <h4><i class="fas fa-layer-group text-indigo"></i> Catalog Health</h4>
+                    <p><span th:text="${booksCount}">0</span> books across <span th:text="${categoriesCount}">0</span>
+                        categories.</p>
+                    <a th:href="@{/admin/categories}" class="dash-pill">Manage Categories</a>
+                </article>
+                <article class="quick-card">
+                    <h4><i class="fas fa-star text-indigo"></i> Merchandising</h4>
+                    <p>Use latest sales trend to refresh featured books and campaign titles.</p>
+                    <a th:href="@{/admin/books}" class="dash-pill">Manage Books</a>
+                </article>
+                <article class="quick-card">
+                    <h4><i class="fas fa-shield-halved text-indigo"></i> User Governance</h4>
+                    <p><span th:text="${usersCount}">0</span> registered users in the platform.</p>
+                    <a th:href="@{/admin/users}" class="dash-pill">Manage Users</a>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <th:block layout:fragment="extra-js">
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var bars = document.querySelectorAll('#salesBars .bar');
+                bars.forEach(function (bar, index) {
+                    var targetHeight = parseInt(bar.getAttribute('data-height'), 10) || 20;
+                    bar.style.height = '14px';
+                    setTimeout(function () {
+                        bar.style.height = targetHeight + '%';
+                    }, 120 + (index * 80));
+                });
+            });
+        </script>
+    </th:block>
+</body>
+
+</html>
+
+
+

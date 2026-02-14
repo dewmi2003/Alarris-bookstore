@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Manage Orders</title>
+</head>
+
+<body>
+    <main layout:fragment="content" class="admin-manage-page">
+        <div class="container mt-4">
+            <div class="mb-4">
+                <h1>Manage Orders</h1>
+                <p class="text-secondary">Track and update customer order statuses.</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.id}">1</td>
+                        <td th:text="${order.user.email}" style="font-weight: 600;">user@example.com</td>
+                        <td th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">Date</td>
+                        <td th:text="'LKR ' + ${order.totalAmount}" class="text-accent" style="font-weight: 700;">LKR 0.00
+                        </td>
+                        <td>
+                            <span th:text="${order.status}"
+                                th:class="'badge ' + (${order.status == 'PENDING'} ? 'badge-warning' : (${order.status == 'SHIPPED'} ? 'badge-info' : (${order.status == 'DELIVERED'} ? 'badge-success' : 'badge-error')))">
+                                PENDING
+                            </span>
+                        </td>
+                        <td>
+                            <div class="flex gap-1 items-center">
+                                <form th:action="@{'/admin/orders/' + ${order.id} + '/status'}" method="post"
+                                    style="margin: 0;">
+                                    <select name="status" onchange="this.form.submit()" class="form-control"
+                                        style="padding: 0.5rem; font-size: 0.8rem; height: auto; width: auto;">
+                                        <option value="PENDING" th:selected="${order.status == 'PENDING'}">PENDING
+                                        </option>
+                                        <option value="SHIPPED" th:selected="${order.status == 'SHIPPED'}">SHIPPED
+                                        </option>
+                                        <option value="DELIVERED" th:selected="${order.status == 'DELIVERED'}">DELIVERED
+                                        </option>
+                                        <option value="CANCELLED" th:selected="${order.status == 'CANCELLED'}">CANCELLED
+                                        </option>
+                                    </select>
+                                </form>
+                                <a th:href="@{'/admin/orders/edit/' + ${order.id}}" class="btn btn-primary"
+                                    style="padding: 0.5rem; font-size: 0.8rem;">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,549 @@
+/* ========================================
+   ALARIS BOOKSTORE - PREMIUM CSS
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-bg: #f8f9fa;
+    --text-color: #2d3436;
+    --accent-color: #d35400;
+    /* Burnt Orange/Gold */
+    --secondary-accent: #2c3e50;
+    /* Dark Blue */
+    --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--secondary-accent);
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ============ NAVIGATION ============ */
+.navbar {
+    background: var(--white);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.nav-container {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    /* animation: float 3s ease-in-out infinite; */
+}
+
+.logo-text {
+    background: linear-gradient(45deg, #2c3e50, #d35400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--secondary-accent);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.admin-link {
+    color: #c0392b !important;
+    font-weight: 600;
+}
+
+.cart-link {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: 600;
+}
+
+.btn-login,
+.btn-register,
+.logout-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+}
+
+.btn-login {
+    background: transparent;
+    border: 2px solid var(--secondary-accent);
+    color: var(--secondary-accent);
+}
+
+.btn-login:hover {
+    background: var(--secondary-accent);
+    color: white;
+}
+
+.btn-register {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+}
+
+.btn-register:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(211, 84, 0, 0.4);
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* ============ HERO SECTION ============ */
+.hero-section {
+    height: 80vh;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 2;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--secondary-accent);
+    color: white;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s forwards;
+}
+
+.btn-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(44, 62, 80, 0.4);
+    background: #34495e;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ============ MAIN LAYOUT ============ */
+.container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ============ CARDS & GRID ============ */
+.book-grid,
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.card,
+.book-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    top: 0;
+}
+
+.card:hover,
+.book-card:hover {
+    top: -10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.book-image-wrapper {
+    height: 350px;
+    overflow: hidden;
+    background: #f1f1f1;
+    position: relative;
+}
+
+.book-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.book-card:hover .book-image {
+    transform: scale(1.05);
+}
+
+.book-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.book-author {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-price {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--secondary-accent);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #e74c3c;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+/* ============ TABLES ============ */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 1rem;
+}
+
+th {
+    background: var(--secondary-accent);
+    color: white;
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 1.2rem;
+    border-bottom: 1px solid #f1f2f6;
+    color: #555;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: #fdfbfb;
+}
+
+/* ============ FORMS ============ */
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(211, 84, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--secondary-accent);
+}
+
+/* ============ FOOTER ============ */
+footer {
+    background: var(--secondary-accent);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* ============ HOME SECTIONS ============ */
+.home-section {
+    margin-bottom: 5rem;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-color);
+}
+
+.review-card {
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    transform: scale(1.02);
+}
+
+/* ============ MODERN BOOK CARD ============ */
+.book-image-wrapper {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.book-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: var(--transition);
+    backdrop-filter: blur(3px);
+}
+
+.book-card:hover .book-overlay {
+    opacity: 1;
+}
+
+.btn-overlay {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-overlay:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.book-info {
+    padding: 1.5rem;
+    text-align: left;
+    /* Modern Left Align */
+}
+
+.book-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book-price {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.3rem;
+}

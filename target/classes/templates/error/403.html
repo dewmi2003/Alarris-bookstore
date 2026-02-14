@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>403 - Forbidden</title>
+    <style>
+        .error-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        [data-theme="dark"] .error-container {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .error-code {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .error-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .error-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .error-btn-secondary {
+            background: #95a5a6;
+        }
+
+        [data-theme="dark"] .error-btn-secondary {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+
+<body>
+    <main layout:fragment="content">
+        <div class="error-container">
+            <div class="error-code">403</div>
+            <h1 class="error-title">Access Forbidden</h1>
+            <p class="error-description">
+                Sorry, you don't have permission to access this resource. You may need administrator privileges.
+            </p>
+            <div class="error-actions">
+                <a th:href="@{/}" class="error-btn">Go to Home</a>
+                <a th:href="@{/books}" class="error-btn error-btn-secondary">Browse Books</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+
+

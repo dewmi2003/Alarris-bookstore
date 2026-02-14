@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Edit Website Content</title>
+</head>
+
+<body>
+    <main layout:fragment="content" class="admin-manage-page">
+        <div class="container mt-4" style="max-width: 900px;">
+            <div class="flex justify-between items-center mb-4">
+                <h1 th:text="'Edit ' + ${#strings.toUpperCase(pageContent.pageKey)} + ' Content'">Edit Content</h1>
+                <a th:href="@{/admin/content}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div>
+
+            <form th:action="@{'/admin/content/edit/' + ${pageContent.pageKey}}" th:object="${pageContent}" method="post"
+                class="card" style="padding: 1.2rem; border-radius: 18px; display: grid; gap: 1rem;">
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{pageKey}">
+
+                <div>
+                    <label class="mb-2">Title</label>
+                    <input type="text" th:field="*{title}" class="form-control" required>
+                </div>
+
+                <div>
+                    <label class="mb-2">Subtitle</label>
+                    <textarea th:field="*{subtitle}" class="form-control" rows="2"></textarea>
+                </div>
+
+                <div>
+                    <label class="mb-2">Main Content</label>
+                    <textarea th:field="*{content}" class="form-control" rows="6"></textarea>
+                    <small class="text-tertiary">For Home page announcements, separate each item with `|`.</small>
+                    <small class="text-tertiary" th:if="${pageContent.pageKey == 'contact'}">For Contact page info, use one line per item.</small>
+                </div>
+
+                <div>
+                    <label class="mb-2">Extra Content</label>
+                    <textarea th:field="*{extraContent}" class="form-control" rows="4"></textarea>
+                </div>
+
+                <div style="display: grid; gap: 1rem; grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <label class="mb-2">CTA Text</label>
+                        <input type="text" th:field="*{ctaText}" class="form-control">
+                    </div>
+                    <div>
+                        <label class="mb-2">CTA URL</label>
+                        <input type="text" th:field="*{ctaUrl}" class="form-control" placeholder="/books?category=fiction">
+                    </div>
+                </div>
+
+                <div class="flex gap-2 mt-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a th:href="@{/admin/content}" class="btn btn-accent">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
