@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <title th:text="${book.title} + ' - Alariis Bookstore'">Book Details</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .book-view-container {
+                display: grid;
+                grid-template-columns: 450px 1fr;
+                gap: var(--space-6);
+                background: var(--bg-white);
+                padding: var(--space-4);
+                border-radius: var(--radius-xl);
+                box-shadow: var(--shadow-lg);
+                margin-top: var(--space-4);
+            }
+
+            .book-gallery {
+                position: sticky;
+                top: 100px;
+                height: fit-content;
+            }
+
+            .book-main-img {
+                width: 100%;
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-xl);
+                transition: var(--transition-base);
+            }
+
+            .book-main-img:hover {
+                transform: scale(1.02);
+            }
+
+            .price-tag {
+                font-size: var(--text-4xl);
+                font-weight: 800;
+                color: var(--primary-indigo);
+                margin: var(--space-2) 0;
+            }
+
+            @media (max-width: 992px) {
+                .book-view-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .book-gallery {
+                    position: static;
+                }
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <div class="container mt-4">
+            <!-- Breadcrumbs -->
+            <div class="flex gap-1 text-sm text-secondary mb-4">
+                <a th:href="@{/}" class="text-secondary">Home</a>
+                <span>/</span>
+                <a th:href="@{/books}" class="text-secondary">Shop</a>
+                <span>/</span>
+                <span class="text-primary font-bold" th:text="${book.title}">Title</span>
+            </div>
+
+            <div class="book-view-container scroll-animate">
+                <!-- Left: Image -->
+                <div class="book-gallery">
+                    <img th:if="${book.coverImage != null}" th:src="@{'/images/books/' + ${book.coverImage}}"
+                        th:alt="${book.title}" class="book-main-img">
+                    <div th:if="${book.coverImage == null}" class="card flex items-center justify-center bg-light-gray"
+                        style="aspect-ratio: 2/3;">
+                        <i class="fas fa-book fa-5x text-light"></i>
+                    </div>
+                </div>
+
+                <!-- Right: Details -->
+                <div class="book-info">
+                    <span th:text="${book.category != null ? book.category.name : 'General'}"
+                        class="badge badge-info mb-2">Category</span>
+                    <h1 th:text="${book.title}" style="font-size: var(--text-4xl); line-height: 1.1;">Book Title</h1>
+                    <p class="text-xl text-secondary mt-1">by <span class="font-bold text-primary"
+                            th:text="${book.author}">Author</span></p>
+
+                    <div class="flex items-center gap-1 mt-2 text-warning">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span class="text-secondary text-sm ml-1">(4.8 rating)</span>
+                    </div>
+
+                    <div class="price-tag" th:text="'LKR ' + ${book.price}">LKR 0.00</div>
+
+                    <div class="form-group mb-4">
+                        <div th:if="${book.stockQuantity > 0}"
+                            class="flex items-center gap-1 text-success font-bold text-sm">
+                            <i class="fas fa-check-circle"></i> In Stock (<span th:text="${book.stockQuantity}"></span>
+                            available)
+                        </div>
+                        <div th:unless="${book.stockQuantity > 0}"
+                            class="flex items-center gap-1 text-error font-bold text-sm">
+                            <i class="fas fa-times-circle"></i> Out of Stock
+                        </div>
+                    </div>
+
+                    <div class="description-section mb-6">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-secondary mb-1">Synopsis</h3>
+                        <p th:text="${book.description}" style="color: var(--text-secondary); line-height: 1.6;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-sm mb-6"
+                        style="grid-template-columns: 1fr 1fr; border-top: 1px solid var(--bg-light-gray); padding-top: var(--space-2);">
+                        <div>
+                            <span class="text-tertiary">ISBN:</span> <strong th:text="${book.isbn}">12345</strong>
+                        </div>
+                        <div th:if="${book.publicationYear}">
+                            <span class="text-tertiary">Released:</span> <strong
+                                th:text="${book.publicationYear}">2024</strong>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart -->
+                    <div class="mt-4">
+                        <form th:action="@{/cart/add}" method="post" class="flex gap-2">
+                            <input type="hidden" name="bookId" th:value="${book.id}">
+                            <div class="flex items-center gap-1"
+                                style="border: 2px solid var(--bg-light-gray); border-radius: var(--radius-md); padding: 0.25rem;">
+                                <button type="button" class="btn"
+                                    style="padding: 0.5rem; background: transparent; color: var(--text-primary);"
+                                    onclick="qtyChange(-1)"><i class="fas fa-minus"></i></button>
+                                <input type="number" name="quantity" id="qty" value="1" min="1" max="99"
+                                    class="text-center font-bold"
+                                    style="width: 50px; border: none; background: transparent;">
+                                <button type="button" class="btn"
+                                    style="padding: 0.5rem; background: transparent; color: var(--text-primary);"
+                                    onclick="qtyChange(1)"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="flex: 1;"
+                                th:disabled="${book.stockQuantity <= 0}">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <th:block layout:fragment="extra-js">
+        <script>
+            function qtyChange(delta) {
+                const q = document.getElementById('qty');
+                let val = parseInt(q.value) + delta;
+                if (val < 1) val = 1;
+                if (val > 99) val = 99;
+                q.value = val;
+            }
+        </script>
+    </th:block>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>My Profile - Alariis Bookstore</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .profile-container {
+                max-width: 920px;
+                margin: var(--space-8) auto;
+            }
+
+            .profile-card {
+                background: var(--bg-white);
+                border-radius: var(--radius-2xl);
+                padding: var(--space-8);
+                box-shadow: var(--shadow-lg);
+                border: 1px solid var(--bg-light-gray);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .profile-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent 45%);
+                pointer-events: none;
+            }
+
+            .profile-header {
+                text-align: center;
+                margin-bottom: var(--space-6);
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                background: var(--gradient-primary);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                margin: 0 auto var(--space-4);
+                box-shadow: var(--shadow-md);
+            }
+
+            .profile-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-6);
+            }
+
+            .profile-section {
+                background: rgba(79, 70, 229, 0.03);
+                border: 1px solid rgba(79, 70, 229, 0.12);
+                border-radius: var(--radius-lg);
+                padding: var(--space-4);
+            }
+
+            .profile-actions {
+                margin-top: var(--space-6);
+                display: flex;
+                gap: var(--space-2);
+            }
+
+            [data-theme="dark"] .profile-card::before {
+                background: radial-gradient(circle at top right, rgba(129, 140, 248, 0.16), transparent 52%);
+            }
+
+            [data-theme="dark"] .profile-section {
+                background: rgba(129, 140, 248, 0.08);
+                border-color: rgba(129, 140, 248, 0.2);
+            }
+
+            @media (max-width: 900px) {
+                .profile-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .profile-actions {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-card scroll-animate">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h1 class="text-3xl font-black text-indigo">Account Settings</h1>
+                        <p class="text-secondary">Manage your personal information and security</p>
+                    </div>
+
+                    <div th:if="${param.success}" class="alert alert-success mt-4 mb-6">
+                        <i class="fas fa-check-circle"></i> Profile updated successfully!
+                    </div>
+
+                    <form th:action="@{/profile/update}" th:object="${user}" method="post">
+                        <input type="hidden" th:field="*{id}" />
+
+                        <div class="profile-grid">
+                            <div class="profile-section">
+                                <label class="font-bold flex items-center gap-2 mb-2">
+                                    <i class="fas fa-envelope text-tertiary"></i> Email Address
+                                </label>
+                                <input type="text" th:value="${user.email}" readonly
+                                    class="form-control bg-light-gray cursor-not-allowed">
+                                <small class="text-tertiary">Your email cannot be changed.</small>
+                            </div>
+
+                            <div class="profile-section">
+                                <label class="font-bold flex items-center gap-2 mb-2">
+                                    <i class="fas fa-id-card text-indigo"></i> Full Name
+                                </label>
+                                <input type="text" th:field="*{fullName}" required class="form-control"
+                                    placeholder="John Doe">
+                            </div>
+
+                            <div class="profile-section">
+                                <label class="font-bold flex items-center gap-2 mb-2">
+                                    <i class="fas fa-phone text-indigo"></i> Phone Number
+                                </label>
+                                <input type="text" th:field="*{phoneNumber}" class="form-control"
+                                    placeholder="+1 (555) 000-0000">
+                            </div>
+
+                            <div class="profile-section">
+                                <label class="font-bold flex items-center gap-2 mb-2">
+                                    <i class="fas fa-map-marker-alt text-indigo"></i> City
+                                </label>
+                                <input type="text" th:field="*{city}" class="form-control" placeholder="e.g. New York">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-6 profile-section">
+                            <label class="font-bold flex items-center gap-2 mb-2">
+                                <i class="fas fa-home text-indigo"></i> Street Address
+                            </label>
+                            <input type="text" th:field="*{address}" class="form-control"
+                                placeholder="123 Bookstore Av.">
+                        </div>
+
+                        <div class="form-group mt-6 profile-section">
+                            <label class="font-bold flex items-center gap-2 mb-2">
+                                <i class="fas fa-lock text-accent"></i> Security
+                            </label>
+                            <input type="password" name="password" class="form-control"
+                                placeholder="Enter new password to change">
+                            <small class="text-tertiary">Leave blank if you don't want to change your password.</small>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button type="submit" class="btn btn-primary btn-lg flex-grow">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                            <a th:href="@{/my-orders}" class="btn btn-outline btn-lg">
+                                <i class="fas fa-history"></i> Order History
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+
+
