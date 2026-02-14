@@ -54,7 +54,7 @@ nav a{color:#ffb703;text-decoration:none;margin:0 10px;font-weight:bold;cursor:p
 .cat:hover{transform:scale(1.05);}
 footer{background:#1e1e2f;color:white;text-align:center;padding:20px}
 
-/* Dropdown Styles */
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -86,11 +86,11 @@ footer{background:#1e1e2f;color:white;text-align:center;padding:20px}
 <body>
 
 <nav>
-<h2>📚 BookWorm</h2>
+<h2> BookWorm </h2>
 <div>
 <a onclick="showAllBooks()">All Books</a>
 
-<!-- Categories Dropdown -->
+
 <div class="dropdown">
     <a>Categories ▾</a>
     <div class="dropdown-content">
@@ -115,12 +115,12 @@ footer{background:#1e1e2f;color:white;text-align:center;padding:20px}
 </div>
 
 <section class="categories">
-<div class="cat" onclick="goCategory('Fiction')">📖 Fiction</div>
-<div class="cat" onclick="goCategory('Romance')">💖 Romance</div>
-<div class="cat" onclick="goCategory('Thriller')">🕵 Thriller</div>
-<div class="cat" onclick="goCategory('Technology')">💻 Technology</div>
-<div class="cat" onclick="goCategory('Self Help')">🌱 Self Help</div>
-<div class="cat" onclick="goCategory('Fantasy')">🧙 Fantasy</div>
+<div class="cat" onclick="goCategory('Fiction')"> Fiction</div>
+<div class="cat" onclick="goCategory('Romance')"> Romance</div>
+<div class="cat" onclick="goCategory('Thriller')"> Thriller</div>
+<div class="cat" onclick="goCategory('Technology')"> Technology</div>
+<div class="cat" onclick="goCategory('Self Help')"> Self Help</div>
+<div class="cat" onclick="goCategory('Fantasy')"> Fantasy</div>
 </section>
 
 <footer>
@@ -128,10 +128,10 @@ footer{background:#1e1e2f;color:white;text-align:center;padding:20px}
 </footer>
 
 <script>
-// Explore Books button -> show all books
+
 document.getElementById("exploreBtn").addEventListener("click", function(){
     if(localStorage.getItem("loggedIn") === "true"){
-        localStorage.removeItem("category"); // no filter -> all books
+        localStorage.removeItem("category"); 
         window.location.href = "store.html";
     } else {
         alert("Please sign in first!");
@@ -139,9 +139,9 @@ document.getElementById("exploreBtn").addEventListener("click", function(){
     }
 });
 
-// Go to specific category
+
 function goCategory(cat){
-    localStorage.setItem("category", cat); // save selected category
+    localStorage.setItem("category", cat); 
     if(localStorage.getItem("loggedIn") === "true"){
         window.location.href = "store.html";
     } else {
@@ -150,9 +150,9 @@ function goCategory(cat){
     }
 }
 
-// Show all books
+
 function showAllBooks(){
-    localStorage.removeItem("category"); // remove filter
+    localStorage.removeItem("category"); 
     if(localStorage.getItem("loggedIn") === "true"){
         window.location.href = "store.html";
     } else {
@@ -164,6 +164,7 @@ function showAllBooks(){
 
 </body>
 </html>
+
 
 
 
