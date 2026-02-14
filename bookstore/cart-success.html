@@ -72,14 +72,14 @@ body {
 </div>
 
 <script>
-// Get book title from URL
+
 const params = new URLSearchParams(window.location.search);
 const title = params.get("title");
 if(title){
     document.getElementById("bookName").textContent = `"${title}" has been added to your cart!`;
 }
 
-// Create some confetti effect
+
 for(let i=0;i<50;i++){
     const confetti = document.createElement("div");
     confetti.className = "confetti";
@@ -94,3 +94,4 @@ for(let i=0;i<50;i++){
 
 </body>
 </html>
+
