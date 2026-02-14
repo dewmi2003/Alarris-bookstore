@@ -44,7 +44,7 @@ footer{background:#1e1e2f;color:white;text-align:center;padding:20px;margin-top:
 <body>
 
 <nav>
-<h2>📚 BookWorm</h2>
+<h2> BookWorm</h2>
 <div>
 <a href="index.html">Home</a>
 <a href="store.html">Store</a>
@@ -63,13 +63,13 @@ footer{background:#1e1e2f;color:white;text-align:center;padding:20px;margin-top:
 </footer>
 
 <script>
-// Check login
+
 if(localStorage.getItem("loggedIn") !== "true"){
     alert("Please sign in first!");
     window.location.href = "signin.html";
 }
 
-// Sign out button
+
 document.getElementById("signOutBtn").addEventListener("click", function(){
     localStorage.removeItem("loggedIn");
     localStorage.removeItem("userEmail");
@@ -77,10 +77,10 @@ document.getElementById("signOutBtn").addEventListener("click", function(){
     window.location.href = "index.html";
 });
 
-// Book data
+
 const categories=["Fiction","Romance","Thriller","Technology","Self Help","Fantasy"];
 const books=[];
-for(let i=1;i<=50;i++){ // Changed from 60 to 50
+for(let i=1;i<=50;i++){
     books.push({
         id:i,
         title:"Book "+i,
@@ -92,7 +92,6 @@ for(let i=1;i<=50;i++){ // Changed from 60 to 50
     });
 }
 
-// Display books
 const list=document.getElementById("bookList");
 function displayBooks(filter=""){
     list.innerHTML="";
@@ -117,7 +116,6 @@ function displayBooks(filter=""){
 
 displayBooks();
 
-// Search functionality
 document.getElementById("search").addEventListener("input", function(){
     displayBooks(this.value);
 });
@@ -125,5 +123,6 @@ document.getElementById("search").addEventListener("input", function(){
 
 </body>
 </html>
+
 
 
