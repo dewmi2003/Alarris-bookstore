@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize all features
