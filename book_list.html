@@ -9,7 +9,7 @@
 <body>
     <th:block layout:fragment="extra-css">
         <style>
-            /* Books Page Specific Styles using Design System Variables */
+
             .books-hero {
                 background: var(--gradient-hero);
                 padding: var(--space-6) 0 var(--space-4);
@@ -69,7 +69,7 @@
                 }
             }
 
-            /* Filter Chips Overrides */
+            
             .filter-chip {
                 padding: 0.5rem 1rem;
                 background: var(--bg-light-gray);
@@ -90,7 +90,7 @@
     </th:block>
 
     <main layout:fragment="content">
-        <!-- Hero Section -->
+        
         <section class="books-hero">
             <div class="container">
                 <div th:if="${query == null or query == ''}">
@@ -110,7 +110,7 @@
             </div>
         </section>
 
-        <!-- Main Content -->
+
         <section style="padding: var(--space-4) 0; background: var(--bg-soft-white);">
             <div class="container">
                 <div class="books-grid-layout">
@@ -175,7 +175,7 @@
                         </div>
                     </aside>
 
-                    <!-- Books Display -->
+                    
                     <div>
                         <div class="flex justify-between items-center mb-4">
                             <div class="text-secondary">
@@ -200,7 +200,7 @@
                             </div>
                         </div>
 
-                        <!-- Grid -->
+                        
                         <div class="grid grid-cols-3"
                             style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-3);">
                             <div class="card p-0 overflow-hidden" th:each="book : ${books}"
@@ -251,7 +251,7 @@
                             </div>
                         </div>
 
-                        <!-- Empty State -->
+                        
                         <div th:if="${#lists.isEmpty(books)}" class="text-center py-6">
                             <i class="fas fa-search fa-4x text-light mb-2"></i>
                             <h3>No books found</h3>
@@ -289,6 +289,7 @@
 </body>
 
 </html>
+
 
 
 
