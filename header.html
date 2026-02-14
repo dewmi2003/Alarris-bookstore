@@ -1,7 +1,7 @@
 <nav th:fragment="nav" class="premium-nav" id="mainNav" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="nav-container">
-        <!-- Logo -->
+        
         <a th:href="@{/}" class="logo-premium">
             <img th:src="@{/images/logo2.png}" alt="Alariis" class="logo-img">
         </a>
@@ -13,14 +13,14 @@
             <a th:href="@{/contact}" class="nav-chip">Contact Us</a>
         </div>
 
-        <!-- Navigation Actions -->
+       
         <div class="nav-actions">
-            <!-- Theme Toggle -->
+            
             <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
                 <i class="fas fa-moon"></i>
             </button>
 
-            <!-- Admin Links -->
+           
             <div sec:authorize="hasRole('ADMIN')" class="flex gap-2">
                 <a th:href="@{/admin/dashboard}" class="nav-admin-btn">
                     <i class="fas fa-tachometer-alt"></i>
@@ -32,7 +32,7 @@
                 </a>
             </div>
 
-            <!-- Cart (Visible to Customers and Guests, Hidden for Admin) -->
+            
             <div sec:authorize="!hasRole('ADMIN')" class="flex gap-2">
                 <!-- Cart Icon -->
                 <a th:href="@{/cart}" class="nav-icon-btn" title="Shopping Cart">
@@ -42,13 +42,13 @@
                 </a>
             </div>
 
-            <!-- Auth Buttons -->
+           
             <div class="nav-auth" sec:authorize="isAnonymous()">
                 <a th:href="@{/login}" class="btn-nav-login">Login</a>
                 <a th:href="@{/register}" class="btn-nav-register">Register</a>
             </div>
 
-            <!-- User Dropdown -->
+            
             <div class="user-dropdown" sec:authorize="isAuthenticated()">
                 <button class="user-btn">
                     <i class="fas fa-user-circle"></i>
@@ -76,6 +76,7 @@
         </div>
     </div>
 </nav>
+
 
 
 
