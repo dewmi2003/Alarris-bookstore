@@ -1,6 +1,4 @@
-// ========================================
-// SMART SEARCH WITH AUTO-SUGGESTIONS
-// ========================================
+
 
 (function () {
     'use strict';
@@ -16,11 +14,11 @@
 
             if (!this.searchInput) return;
 
-            // Add event listeners
+           
             this.searchInput.addEventListener('input', (e) => this.handleInput(e));
             this.searchInput.addEventListener('focus', () => this.showSuggestions());
 
-            // Close suggestions when clicking outside
+            
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.search-bar-wrapper')) {
                     this.hideSuggestions();
@@ -31,7 +29,7 @@
         handleInput(e) {
             const query = e.target.value.trim();
 
-            // Clear previous timer
+            
             clearTimeout(this.debounceTimer);
 
             if (query.length < 2) {
@@ -39,7 +37,7 @@
                 return;
             }
 
-            // Debounce the search
+           
             this.debounceTimer = setTimeout(() => {
                 this.fetchSuggestions(query);
             }, 300);
@@ -47,8 +45,7 @@
 
         async fetchSuggestions(query) {
             try {
-                // In production, this would call your backend API
-                // For now, we'll use mock data
+               
                 const suggestions = this.getMockSuggestions(query);
                 this.displaySuggestions(suggestions);
             } catch (error) {
@@ -57,7 +54,7 @@
         },
 
         getMockSuggestions(query) {
-            // Mock data - in production, replace with actual API call
+            
             const allBooks = [
                 { id: 1, title: '1984', author: 'George Orwell', price: 13.99, image: '1984.jpg' },
                 { id: 2, title: 'Dune', author: 'Frank Herbert', price: 18.99, image: 'dune.jpg' },
@@ -123,9 +120,7 @@
         }
     };
 
-    // ========================================
-    // VOICE SEARCH
-    // ========================================
+ 
 
     const VoiceSearch = {
         recognition: null,
@@ -142,14 +137,13 @@
                 return;
             }
 
-            // Initialize speech recognition
+          
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             this.recognition = new SpeechRecognition();
             this.recognition.continuous = false;
             this.recognition.interimResults = false;
             this.recognition.lang = 'en-US';
 
-            // Add event listeners
             this.voiceBtn.addEventListener('click', () => this.toggleListening());
 
             this.recognition.onresult = (event) => this.handleResult(event);
@@ -169,7 +163,7 @@
             this.isListening = true;
             this.voiceBtn.classList.add('voice-search-active');
 
-            // Show modal
+           
             this.showVoiceModal();
 
             try {
@@ -188,19 +182,19 @@
             try {
                 this.recognition.stop();
             } catch (error) {
-                // Ignore errors when stopping
+                
             }
         },
 
         handleResult(event) {
             const transcript = event.results[0][0].transcript;
 
-            // Update search input
+            
             const searchInput = document.getElementById('globalSearch');
             if (searchInput) {
                 searchInput.value = transcript;
 
-                // Trigger search
+                
                 const form = searchInput.closest('form');
                 if (form) {
                     form.submit();
@@ -209,7 +203,7 @@
 
             this.stopListening();
 
-            // Show success toast
+            
             if (window.AlariisDesignSystem) {
                 window.AlariisDesignSystem.Toast.success(`Searching for: "${transcript}"`);
             }
@@ -225,7 +219,7 @@
         },
 
         showVoiceModal() {
-            // Remove existing modal if any
+           
             this.hideVoiceModal();
 
             const modal = document.createElement('div');
@@ -242,7 +236,7 @@
                 </button>
             `;
 
-            // Add backdrop
+            
             const backdrop = document.createElement('div');
             backdrop.id = 'voiceSearchBackdrop';
             backdrop.className = 'modal-backdrop active';
@@ -251,7 +245,6 @@
             document.body.appendChild(backdrop);
             document.body.appendChild(modal);
 
-            // Close on backdrop click
             backdrop.addEventListener('click', () => this.stopListening());
         },
 
@@ -264,7 +257,7 @@
         }
     };
 
-    // Initialize when DOM is ready
+    
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             SmartSearch.init();
@@ -275,7 +268,7 @@
         VoiceSearch.init();
     }
 
-    // Expose globally
+  
     window.SmartSearch = SmartSearch;
     window.VoiceSearch = VoiceSearch;
 
