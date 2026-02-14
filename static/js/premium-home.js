@@ -1,4 +1,3 @@
-
 function updateScrollProgress() {
     const scrollProgress = document.getElementById('scrollProgress');
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
