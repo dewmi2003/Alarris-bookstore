@@ -17,7 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByFeaturedTrue();
 
-    // Additional query methods for filtering
+   
     @Query("SELECT b FROM Book b WHERE b.deleted = false AND b.price BETWEEN :minPrice AND :maxPrice ORDER BY b.price ASC")
     List<Book> findByPriceRange(Double minPrice, Double maxPrice);
 
