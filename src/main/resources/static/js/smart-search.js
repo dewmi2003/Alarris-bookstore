@@ -131,7 +131,7 @@
             this.voiceBtn = document.getElementById('voiceSearchBtn');
             if (!this.voiceBtn) return;
 
-            // Check if browser supports Web Speech API
+            
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
                 this.voiceBtn.style.display = 'none';
                 return;
