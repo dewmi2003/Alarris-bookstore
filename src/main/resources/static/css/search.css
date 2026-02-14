@@ -1,6 +1,4 @@
-/* ========================================
-   SMART SEARCH WITH AUTO-SUGGESTIONS
-   ======================================== */
+
 
 .search-suggestions {
     position: absolute;
@@ -80,7 +78,7 @@
     color: var(--text-tertiary);
 }
 
-/* Voice Search Animation */
+
 .voice-search-active {
     animation: pulse-voice 1.5s infinite;
 }
