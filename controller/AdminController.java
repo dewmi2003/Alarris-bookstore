@@ -141,7 +141,7 @@ public class AdminController {
         return "admin/dashboard";
     }
 
-    // --- Book Management ---
+    
 
     @GetMapping("/books")
     public String listBooks(Model model) {
@@ -236,7 +236,7 @@ public class AdminController {
         return "redirect:/admin/books";
     }
 
-    // --- Category Management ---
+    
 
     @GetMapping("/categories")
     public String listCategories(Model model) {
@@ -262,7 +262,7 @@ public class AdminController {
         return "redirect:/admin/categories";
     }
 
-    // --- Order Management ---
+    
 
     @GetMapping("/orders")
     public String listOrders(Model model) {
@@ -291,7 +291,7 @@ public class AdminController {
         return "redirect:/admin/orders";
     }
 
-    // --- User Management ---
+   
 
     @GetMapping("/users")
     public String listUsers(Model model) {
@@ -312,7 +312,7 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    // --- Site Content Management ---
+    
 
     @GetMapping("/content")
     public String listManagedContent(Model model) {
