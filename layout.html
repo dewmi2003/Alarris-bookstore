@@ -20,34 +20,32 @@
         })();
     </script>
 
-    <!-- Favicon -->
+    
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 
-    <!-- Font Awesome -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Global Design System CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/global-design-system.css}">
     <link rel="stylesheet" th:href="@{/css/components.css}">
     <link rel="stylesheet" th:href="@{/css/premium-home.css}">
-    <!-- legacy style.css removed -->
+    
 
-
-    <!-- Page-specific CSS -->
     <th:block layout:fragment="extra-css"></th:block>
 </head>
 
 <body class="page-wrapper">
-    <!-- Scroll Progress Indicator -->
+
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Enhanced Navigation -->
+
     <div th:replace="~{fragments/header :: nav}"></div>
 
-    <!-- Main Content -->
+
     <main layout:fragment="content" class="main-content">
-        <!-- Global Alerts -->
+        
         <div class="container mt-2">
             <div th:if="${successMessage}" class="alert alert-success scroll-animate">
                 <i class="fas fa-check-circle"></i>
@@ -58,29 +56,30 @@
                 <span th:text="${errorMessage}">Error!</span>
             </div>
         </div>
-        <!-- Page content will be inserted here -->
+        
     </main>
 
-    <!-- Premium Footer -->
+    
     <div sec:authorize="!hasRole('ADMIN')" th:replace="~{fragments/footer :: footer}"></div>
 
-    <!-- Back to Top Button -->
+    
     <button class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Toast Container -->
+    
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- Global JavaScript - MUST BE LOADED IN THIS ORDER -->
+    
     <script th:src="@{/js/design-system.js}"></script>
     <script th:src="@{/js/premium-home.js}"></script>
 
-    <!-- Page-specific JavaScript -->
+    
     <th:block layout:fragment="extra-js"></th:block>
 </body>
 
 </html>
+
 
 
 
