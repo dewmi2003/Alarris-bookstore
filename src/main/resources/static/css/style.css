@@ -1,6 +1,4 @@
-/* ========================================
-   ALARIS BOOKSTORE - PREMIUM CSS
-   ======================================== */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -8,9 +6,9 @@
     --primary-bg: #f8f9fa;
     --text-color: #2d3436;
     --accent-color: #d35400;
-    /* Burnt Orange/Gold */
+   
     --secondary-accent: #2c3e50;
-    /* Dark Blue */
+    
     --white: #ffffff;
     --glass-bg: rgba(255, 255, 255, 0.95);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -52,7 +50,7 @@ ul {
     list-style: none;
 }
 
-/* ============ NAVIGATION ============ */
+
 .navbar {
     background: var(--white);
     padding: 1rem 2rem;
@@ -84,7 +82,7 @@ ul {
 
 .logo-icon {
     font-size: 2rem;
-    /* animation: float 3s ease-in-out infinite; */
+    
 }
 
 .logo-text {
@@ -190,7 +188,7 @@ ul {
     background: #c0392b;
 }
 
-/* ============ HERO SECTION ============ */
+
 .hero-section {
     height: 80vh;
     background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
@@ -242,7 +240,7 @@ ul {
     background: #34495e;
 }
 
-/* Animations */
+
 @keyframes slideUp {
     from {
         transform: translateY(50px);
@@ -267,7 +265,7 @@ ul {
     }
 }
 
-/* ============ MAIN LAYOUT ============ */
+
 .container {
     max-width: 1200px;
     margin: 4rem auto;
@@ -292,7 +290,7 @@ ul {
     border-radius: 2px;
 }
 
-/* ============ CARDS & GRID ============ */
+
 .book-grid,
 .dashboard-grid {
     display: grid;
@@ -391,7 +389,7 @@ ul {
     background: #c0392b;
 }
 
-/* ============ TABLES ============ */
+
 table {
     width: 100%;
     border-collapse: separate;
@@ -426,7 +424,7 @@ tr:hover td {
     background: #fdfbfb;
 }
 
-/* ============ FORMS ============ */
+
 .form-control {
     width: 100%;
     padding: 1rem;
@@ -450,7 +448,7 @@ label {
     color: var(--secondary-accent);
 }
 
-/* ============ FOOTER ============ */
+
 footer {
     background: var(--secondary-accent);
     color: white;
@@ -459,7 +457,7 @@ footer {
     margin-top: 4rem;
 }
 
-/* ============ HOME SECTIONS ============ */
+
 .home-section {
     margin-bottom: 5rem;
 }
@@ -478,7 +476,7 @@ footer {
     transform: scale(1.02);
 }
 
-/* ============ MODERN BOOK CARD ============ */
+
 .book-image-wrapper {
     position: relative;
     height: 380px;
@@ -530,7 +528,7 @@ footer {
 .book-info {
     padding: 1.5rem;
     text-align: left;
-    /* Modern Left Align */
+    
 }
 
 .book-title {
