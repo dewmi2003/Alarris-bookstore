@@ -1,8 +1,4 @@
-// ========================================
-// ALARIIS BOOKSTORE - PREMIUM INTERACTIONS
-// ========================================
 
-// ============ SCROLL PROGRESS INDICATOR ============
 function updateScrollProgress() {
     const scrollProgress = document.getElementById('scrollProgress');
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -12,7 +8,7 @@ function updateScrollProgress() {
 
 window.addEventListener('scroll', updateScrollProgress);
 
-// ============ STICKY NAVIGATION ============
+
 const nav = document.getElementById('mainNav');
 let lastScroll = 0;
 
@@ -28,9 +24,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Theme persistence and toggling is now managed globally by design-system.js
 
-// ============ ANIMATED COUNTERS ============
 function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
     const duration = 2000; // 2 seconds
@@ -48,7 +42,7 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Intersection Observer for counters
+
 const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
@@ -62,7 +56,7 @@ document.querySelectorAll('.stat-number').forEach(counter => {
     counterObserver.observe(counter);
 });
 
-// ============ CAROUSEL CONTROLS ============
+
 function scrollCarousel(carouselId, direction) {
     const carousel = document.getElementById(carouselId + '-carousel');
     const scrollAmount = 320; // Card width + gap
@@ -74,7 +68,7 @@ function scrollCarousel(carouselId, direction) {
     }
 }
 
-// Auto-scroll carousels
+
 function autoScrollCarousel(carouselId, interval = 5000) {
     const carousel = document.getElementById(carouselId + '-carousel');
     if (!carousel) return;
@@ -89,10 +83,10 @@ function autoScrollCarousel(carouselId, interval = 5000) {
     }, interval);
 }
 
-// Initialize auto-scroll for trending carousel
+
 autoScrollCarousel('trending', 5000);
 
-// ============ COUNTDOWN TIMER ============
+
 function startCountdown() {
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
@@ -100,7 +94,7 @@ function startCountdown() {
 
     if (!hoursEl || !minutesEl || !secondsEl) return;
 
-    // Set target time (24 hours from now)
+   
     const targetTime = new Date().getTime() + (24 * 60 * 60 * 1000);
 
     function updateCountdown() {
@@ -129,7 +123,7 @@ function startCountdown() {
 
 startCountdown();
 
-// ============ BACK TO TOP BUTTON ============
+
 const backToTop = document.getElementById('backToTop');
 
 window.addEventListener('scroll', () => {
@@ -144,7 +138,7 @@ backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ============ TOAST NOTIFICATIONS ============
+
 function showToast(message, duration = 3000) {
     const toast = document.getElementById('toast');
     const messageSpan = toast.querySelector('span');
@@ -157,10 +151,10 @@ function showToast(message, duration = 3000) {
     }, duration);
 }
 
-// Add to cart toast notification
+
 document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        // Don't prevent default if it's a form submit
+     
         if (btn.type !== 'submit') {
             e.preventDefault();
         }
@@ -168,7 +162,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     });
 });
 
-// ============ SCROLL ANIMATIONS ============
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -183,7 +177,7 @@ const fadeInObserver = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply fade-in animation to sections
+
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = '0';
     section.style.transform = 'translateY(30px)';
@@ -191,7 +185,7 @@ document.querySelectorAll('section').forEach(section => {
     fadeInObserver.observe(section);
 });
 
-// ============ CATEGORY CARD STAGGER ANIMATION ============
+
 const categoryCards = document.querySelectorAll('.category-card');
 categoryCards.forEach((card, index) => {
     card.style.opacity = '0';
@@ -210,7 +204,7 @@ const categoryObserver = new IntersectionObserver((entries) => {
 
 categoryCards.forEach(card => categoryObserver.observe(card));
 
-// ============ SEARCH BAR ENHANCEMENT ============
+
 const searchBar = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('.search-btn');
 
@@ -222,7 +216,7 @@ searchBar.addEventListener('blur', () => {
     searchBar.parentElement.style.transform = 'scale(1)';
 });
 
-// ============ NEWSLETTER FORM ============
+
 const newsletterForm = document.querySelector('.newsletter-form');
 
 if (newsletterForm) {
@@ -237,14 +231,14 @@ if (newsletterForm) {
     });
 }
 
-// ============ QUICK VIEW MODAL (Placeholder) ============
+
 function quickView(bookId) {
     // This would open a modal with book details
     // For now, redirect to book page
     window.location.href = `/book/${bookId}`;
 }
 
-// ============ LAZY LOADING IMAGES ============
+
 const imageObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -262,7 +256,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
     imageObserver.observe(img);
 });
 
-// ============ PARALLAX EFFECT ============
+
 window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const heroVisual = document.querySelector('.hero-visual');
@@ -272,7 +266,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ============ SMOOTH SCROLL FOR ANCHOR LINKS ============
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -289,10 +283,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============ ANNOUNCEMENT BAR ============
-// CSS animation handles marquee movement.
 
-// ============ REVIEW CAROUSEL AUTO-SCROLL ============
 const reviewsCarousel = document.querySelector('.reviews-carousel');
 if (reviewsCarousel) {
     let reviewIndex = 0;
@@ -310,8 +301,7 @@ if (reviewsCarousel) {
     setInterval(rotateReviews, 5000);
 }
 
-// ============ PERFORMANCE OPTIMIZATION ============
-// Debounce scroll events
+
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -324,13 +314,12 @@ function debounce(func, wait) {
     };
 }
 
-// Apply debounce to scroll-heavy functions
+
 window.addEventListener('scroll', debounce(() => {
-    // Additional scroll-based animations can go here
+    
 }, 100));
 
-// ============ ACCESSIBILITY ENHANCEMENTS ============
-// Add keyboard navigation for carousels
+
 document.addEventListener('keydown', (e) => {
     const activeCarousel = document.querySelector('.books-carousel:hover');
     if (activeCarousel) {
@@ -342,16 +331,16 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ============ CONSOLE WELCOME MESSAGE ============
+
 console.log('%c🎉 Welcome to Alariis Bookstore! 🎉', 'color: #4F46E5; font-size: 20px; font-weight: bold;');
 console.log('%cBuilt with ❤️ using modern web technologies', 'color: #FF6B6B; font-size: 14px;');
 
-// ============ INITIALIZATION ============
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ Premium homepage initialized');
 
-    // Add loaded class to body for CSS transitions
+    
     document.body.classList.add('loaded');
 
-    // Initialize any additional features here
+    
 });
