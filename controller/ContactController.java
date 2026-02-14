@@ -27,8 +27,7 @@ public class ContactController {
             @RequestParam("email") String email,
             @RequestParam("subject") String subject,
             @RequestParam("message") String message) {
-        // Logic to send email (e.g., using JavaMailSender)
-        // For now, we'll just log it or simulate success
+        
         System.out.println("Message received from: " + name + " (" + email + ")");
         System.out.println("Subject: " + subject);
         System.out.println("Message: " + message);
