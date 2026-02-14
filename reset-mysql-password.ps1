@@ -1,5 +1,4 @@
-# MySQL Password Reset Script
-# Run this script as Administrator
+
 
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host "MySQL Root Password Reset Script" -ForegroundColor Cyan
@@ -8,7 +7,7 @@ Write-Host ""
 
 $newPassword = "admin123"
 
-# Check if running as administrator
+
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-not $isAdmin) {
