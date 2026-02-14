@@ -115,12 +115,12 @@ public class BookServiceImpl implements BookService {
         log.debug("Searching books with keyword: {}, category: {}, price range: {}-{}, sortBy: {}",
                 keyword, category, minPrice, maxPrice, sortBy);
         
-        // Start with all non-deleted books
+      
         List<Book> books = bookRepository.findAll().stream()
                 .filter(b -> !b.isDeleted())
                 .collect(Collectors.toList());
         
-        // Apply keyword search if provided
+      
         if (keyword != null && !keyword.trim().isEmpty()) {
             String searchTerm = keyword.trim().toLowerCase();
             books = books.stream()
@@ -131,8 +131,7 @@ public class BookServiceImpl implements BookService {
             log.debug("Found {} books matching keyword: {}", books.size(), keyword);
         }
         
-        // Apply category filter if provided.
-        // "Brown" selection is treated as "All Books" per UI behavior request.
+    
         if (category != null) {
             String categoryFilter = category.toLowerCase().trim();
             boolean isAllCategory = categoryFilter.equals("all")
@@ -149,7 +148,6 @@ public class BookServiceImpl implements BookService {
             }
         }
         
-        // Apply price range filter
         if (minPrice != null && maxPrice != null) {
             books = books.stream()
                     .filter(b -> b.getPrice() >= minPrice && b.getPrice() <= maxPrice)
@@ -157,7 +155,7 @@ public class BookServiceImpl implements BookService {
             log.debug("Found {} books in price range: {} - {}", books.size(), minPrice, maxPrice);
         }
         
-        // Apply sorting
+       
         if (sortBy != null && !sortBy.isEmpty()) {
             String sortOption = sortBy.toLowerCase().trim();
             switch (sortOption) {
