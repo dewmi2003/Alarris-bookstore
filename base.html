@@ -13,19 +13,19 @@
                     document.documentElement.setAttribute('data-theme', savedTheme);
                 }
             } catch (e) {
-                // no-op: fallback to default theme
+              
             }
         })();
     </script>
 
-    <!-- Favicon -->
+   
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 
-    <!-- Font Awesome -->
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Global Design System CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/global-design-system.css}">
     <link rel="stylesheet" th:href="@{/css/components.css}">
     <link rel="stylesheet" th:href="@{/css/premium-home.css}">
@@ -33,31 +33,32 @@
 </head>
 
 <body>
-    <!-- Scroll Progress Indicator -->
+   
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Enhanced Navigation -->
+    
     <div th:replace="~{fragments/header :: nav}"></div>
 
-    <!-- Main Content (will be replaced by each page) -->
+    
     <main>
-        <!-- Page content goes here -->
+       
     </main>
 
-    <!-- Back to Top Button -->
+    
     <button class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Toast Container (for notifications) -->
+    
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- Global JavaScript -->
+    
     <script th:src="@{/js/design-system.js}"></script>
     <script th:src="@{/js/premium-home.js}"></script>
 </body>
 
 </html>
+
 
 
 
