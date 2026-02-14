@@ -64,9 +64,9 @@
             <h1 class="mb-6"><i class="fas fa-shield-alt text-success"></i> Finalize Your Order</h1>
 
             <form th:action="@{/checkout/process}" method="post" class="checkout-grid">
-                <!-- Left Column: Details -->
+                
                 <div class="checkout-details">
-                    <!-- Shipping Section -->
+                
                     <div class="checkout-card scroll-animate">
                         <h2 class="mb-4 flex items-center gap-2">
                             <i class="fas fa-truck text-indigo"></i> 1. Shipping Information
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                    <!-- Payment Section -->
+                    
                     <div class="checkout-card scroll-animate">
                         <h2 class="mb-4 flex items-center gap-2">
                             <i class="fas fa-credit-card text-indigo"></i> 2. Payment Method
@@ -147,7 +147,7 @@
                             </label>
                         </div>
 
-                        <!-- Card Details (Collapsible) -->
+                        
                         <div id="card-form" class="mt-4 p-4 bg-soft-white rounded-lg border">
                             <div class="form-group mb-3">
                                 <label>Card Number</label>
@@ -172,7 +172,7 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Summary -->
+                
                 <aside class="checkout-summary scroll-animate">
                     <div class="card p-6"
                         style="background: var(--bg-white); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--bg-light-gray); position: sticky; top: 100px;">
@@ -260,6 +260,7 @@
 </body>
 
 </html>
+
 
 
 
