@@ -97,6 +97,7 @@
     }
 }
 
+/*search by the mic*/
 .voice-search-modal {
     position: fixed;
     top: 50%;
