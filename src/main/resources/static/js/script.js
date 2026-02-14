@@ -1,13 +1,8 @@
-/**
- * ========================================
- * BOOKSTORE - COMPLETE JAVASCRIPT
- * Modern, Interactive Functionality
- * ========================================
- */
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Initialize all features
+   
     initMobileMenu();
     initAlertAutoDismiss();
     initFormValidation();
@@ -20,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📚 BookStore initialized successfully!');
 });
 
-// ============ MOBILE MENU ============
+
 function initMobileMenu() {
     const toggle = document.getElementById('mobileMenuToggle');
     const menu = document.getElementById('navMenu');
@@ -31,7 +26,7 @@ function initMobileMenu() {
             toggle.classList.toggle('active');
         });
         
-        // Close menu when clicking outside
+       
         document.addEventListener('click', function(e) {
             if (!toggle.contains(e.target) && !menu.contains(e.target)) {
                 menu.classList.remove('active');
@@ -41,12 +36,12 @@ function initMobileMenu() {
     }
 }
 
-// ============ ALERT AUTO-DISMISS ============
+
 function initAlertAutoDismiss() {
     const alerts = document.querySelectorAll('.alert');
     
     alerts.forEach(alert => {
-        // Add close button
+        
         const closeBtn = document.createElement('button');
         closeBtn.innerHTML = '×';
         closeBtn.style.cssText = `
@@ -70,7 +65,7 @@ function initAlertAutoDismiss() {
         alert.style.paddingRight = '50px';
         alert.appendChild(closeBtn);
         
-        // Auto-dismiss after 5 seconds
+        
         setTimeout(() => dismissAlert(alert), 5000);
     });
 }
@@ -82,7 +77,7 @@ function dismissAlert(alert) {
     setTimeout(() => alert.remove(), 300);
 }
 
-// ============ FORM VALIDATION ============
+
 function initFormValidation() {
     const forms = document.querySelectorAll('form');
     
@@ -98,7 +93,7 @@ function initFormValidation() {
             });
         });
         
-        // Form submit validation
+       
         form.addEventListener('submit', function(e) {
             let isValid = true;
             
@@ -108,7 +103,7 @@ function initFormValidation() {
                 }
             });
             
-            // Password confirmation check
+           
             const password = form.querySelector('input[name="password"]');
             const confirmPassword = form.querySelector('input[name="confirmPassword"]');
             
@@ -132,14 +127,14 @@ function validateField(field) {
     removeFieldError(field);
     field.classList.remove('is-invalid');
     
-    // Required validation
+
     if (isRequired && !value) {
         showFieldError(field, 'This field is required');
         field.classList.add('is-invalid');
         return false;
     }
     
-    // Email validation
+  
     if (field.type === 'email' && value) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
@@ -149,15 +144,14 @@ function validateField(field) {
         }
     }
     
-    // Min length validation
+
     const minLength = field.getAttribute('minlength');
     if (minLength && value.length < minLength) {
         showFieldError(field, `Minimum ${minLength} characters required`);
         field.classList.add('is-invalid');
         return false;
     }
-    
-    // Number validation
+ 
     if (field.type === 'number') {
         const min = field.getAttribute('min');
         const max = field.getAttribute('max');
@@ -203,12 +197,12 @@ function removeFieldError(field) {
     }
 }
 
-// ============ QUANTITY CONTROLS ============
+
 function initQuantityControls() {
     const quantityInputs = document.querySelectorAll('input[type="number"][name="quantity"]');
     
     quantityInputs.forEach(input => {
-        // Ensure valid values
+        
         input.addEventListener('input', function() {
             const min = parseInt(input.getAttribute('min')) || 1;
             const max = parseInt(input.getAttribute('max')) || 999;
@@ -222,7 +216,7 @@ function initQuantityControls() {
             }
         });
         
-        // Add increment/decrement buttons if not already present
+        
         if (!input.parentNode.classList.contains('quantity-wrapper')) {
             wrapQuantityInput(input);
         }
@@ -296,7 +290,7 @@ function createQuantityButton(text, onClick) {
     return btn;
 }
 
-// ============ IMAGE PREVIEW ============
+
 function initImagePreview() {
     const fileInputs = document.querySelectorAll('input[type="file"][accept*="image"]');
     
@@ -333,18 +327,17 @@ function initImagePreview() {
     });
 }
 
-// ============ SEARCH ENHANCEMENT ============
 function initSearchEnhancement() {
     const searchInputs = document.querySelectorAll('input[type="text"][placeholder*="Search"]');
     
     searchInputs.forEach(input => {
-        // Add search icon
+        
         input.style.paddingLeft = '40px';
         input.style.backgroundImage = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'/%3E%3Cpath d=\'m21 21-4.35-4.35\'/%3E%3C/svg%3E")';
         input.style.backgroundRepeat = 'no-repeat';
         input.style.backgroundPosition = '12px center';
         
-        // Add clear button
+       
         const clearBtn = document.createElement('button');
         clearBtn.type = 'button';
         clearBtn.innerHTML = '×';
@@ -383,7 +376,7 @@ function initSearchEnhancement() {
     });
 }
 
-// ============ SCROLL ANIMATIONS ============
+
 function initAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -409,7 +402,7 @@ function initAnimations() {
     });
 }
 
-// ============ BACK TO TOP BUTTON ============
+
 function initBackToTop() {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '↑';
@@ -457,7 +450,7 @@ function initBackToTop() {
     });
 }
 
-// ============ NOTIFICATION SYSTEM ============
+
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -511,7 +504,7 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// ============ CONFIRM DIALOGS ============
+
 function confirmAction(message, callback) {
     const overlay = document.createElement('div');
     overlay.style.cssText = `
@@ -558,7 +551,7 @@ function confirmAction(message, callback) {
     };
 }
 
-// ============ LOADING SPINNER ============
+
 function showLoading() {
     const loader = document.createElement('div');
     loader.id = 'globalLoader';
@@ -594,7 +587,7 @@ function hideLoading() {
     if (loader) loader.remove();
 }
 
-// ============ UTILITY FUNCTIONS ============
+
 function formatCurrency(amount) {
     return '$' + parseFloat(amount).toFixed(2);
 }
@@ -607,7 +600,6 @@ function debounce(func, wait) {
     };
 }
 
-// ============ DELETE CONFIRMATIONS ============
 document.addEventListener('click', function(e) {
     if (e.target.closest('button.btn-danger') || 
         e.target.closest('form[action*="delete"]')) {
@@ -622,7 +614,7 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// ============ SMOOTH SCROLL ============
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -636,7 +628,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============ EXPOSE GLOBAL FUNCTIONS ============
+
 window.showNotification = showNotification;
 window.confirmAction = confirmAction;
 window.showLoading = showLoading;
