@@ -233,8 +233,7 @@ if (newsletterForm) {
 
 
 function quickView(bookId) {
-    // This would open a modal with book details
-    // For now, redirect to book page
+    
     window.location.href = `/book/${bookId}`;
 }
 
