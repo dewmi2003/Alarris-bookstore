@@ -1,10 +1,4 @@
--- ========================================
--- ALARIIS BOOKSTORE - REAL-WORLD BOOK DATA
--- ========================================
--- This script populates the database with popular real-world books
--- Run this after the application has created the tables
-
--- Insert Categories (if not already present)
+-- Insert Categories
 INSERT INTO categories (name, description, created_at, updated_at) VALUES
 ('Fiction', 'Literary and contemporary fiction', NOW(), NOW()),
 ('Science Fiction', 'Sci-fi and futuristic novels', NOW(), NOW()),
@@ -22,11 +16,7 @@ INSERT INTO categories (name, description, created_at, updated_at) VALUES
 ON DUPLICATE KEY UPDATE name=name;
 
 
--- Get category IDs (assuming auto-increment starting from 1)
--- Fiction=1, Sci-Fi=2, Fantasy=3, Mystery=4, Romance=5, Non-Fiction=6
--- Biography=7, Self-Help=8, Business=9, History=10, Science=11, Technology=12
 
--- Insert Real-World Books
 INSERT INTO books (title, author, description, price, isbn, publication_year, category_id, cover_image, stock_quantity, featured, created_at, updated_at) VALUES
 
 -- FICTION
@@ -95,7 +85,7 @@ INSERT INTO books (title, author, description, price, isbn, publication_year, ca
 ('The Pragmatic Programmer', 'David Thomas & Andrew Hunt', 'Your Journey to Mastery. A classic guide to software development that covers topics from personal responsibility to architectural techniques.', 23.99, '978-0135957059', 1999, 12, 'pragmatic-programmer.jpg', 48, false, NOW(), NOW()),
 ('Algorithms to Live By', 'Brian Christian & Tom Griffiths', 'The Computer Science of Human Decisions. Discover how algorithms used by computers can untangle human problems and help make better decisions.', 17.99, '978-1627790369', 2016, 12, 'algorithms-live-by.jpg', 40, false, NOW(), NOW());
 
--- Verify data
+
 SELECT COUNT(*) as total_books FROM books;
 SELECT c.name, COUNT(b.id) as book_count 
 FROM category c 
