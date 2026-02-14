@@ -45,29 +45,29 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         order.setOrderDate(LocalDateTime.now());
         order.setStatus("PENDING");
-        order.setPaymentMethod(paymentMethod); // Set payment method
+        order.setPaymentMethod(paymentMethod); 
 
         if (shippingAddress != null && !shippingAddress.isEmpty()) {
-            // Avoid full profile update here to prevent re-encoding existing password hash
+            
             userService.updateUserAddress(user.getId(), shippingAddress);
             user.setAddress(shippingAddress);
         }
 
-        double shippingFee = 5.00; // Flat rate shipping
+        double shippingFee = 5.00; 
         order.setShippingFee(shippingFee);
         order.setTotalAmount(cartService.getTotalAmount() + shippingFee);
 
-        order.setEstimatedDeliveryDate(LocalDateTime.now().plusDays(7)); // Default 7 days delivery
+        order.setEstimatedDeliveryDate(LocalDateTime.now().plusDays(7)); 
 
         for (CartItem cartItem : cartItems) {
             OrderItem orderItem = new OrderItem();
             orderItem.setBook(cartItem.getBook());
             orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setPrice(cartItem.getBook().getPrice()); // Freeze price
+            orderItem.setPrice(cartItem.getBook().getPrice()); 
             orderItem.setOrder(order);
             order.getItems().add(orderItem);
 
-            // Decrement stock
+            
             bookService.decrementStock(cartItem.getBook().getId(), cartItem.getQuantity());
         }
 
@@ -117,13 +117,11 @@ public class OrderServiceImpl implements OrderService {
             order.setStatus("CANCELLED");
             orderRepository.save(order);
 
-            // Restore stock
+           
             for (OrderItem item : order.getItems()) {
                 Book book = item.getBook();
                 book.setStockQuantity(book.getStockQuantity() + item.getQuantity());
-                // We need to save book. Since bookService isn't injected for update, we might
-                // need repository or add method in bookService
-                // actually bookService is injected
+                
                 bookService.updateBook(book);
             }
         }
