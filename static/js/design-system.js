@@ -1,12 +1,7 @@
-// ========================================
-// ALARIIS BOOKSTORE - GLOBAL DESIGN SYSTEM JS
-// Consistent Interactions Across All Pages
-// ========================================
-
 (function () {
     'use strict';
 
-    // ============ THEME MANAGER ============
+    
     const ThemeManager = {
         init() {
             this.themeToggle = document.getElementById('themeToggle');
@@ -43,7 +38,7 @@
         }
     };
 
-    // ============ TOAST NOTIFICATIONS ============
+    
     const Toast = {
         container: null,
 
@@ -106,7 +101,7 @@
         }
     };
 
-    // ============ SCROLL PROGRESS ============
+    
     const ScrollProgress = {
         init() {
             this.progressBar = document.getElementById('scrollProgress');
@@ -127,7 +122,7 @@
         }
     };
 
-    // ============ BACK TO TOP BUTTON ============
+    
     const BackToTop = {
         init() {
             this.button = document.getElementById('backToTop');
@@ -156,7 +151,7 @@
         }
     };
 
-    // ============ MODAL MANAGER ============
+    
     const Modal = {
         open(modalId) {
             const modal = document.getElementById(modalId);
@@ -198,7 +193,7 @@
         }
     };
 
-    // ============ TAB MANAGER ============
+    
     const Tabs = {
         init() {
             document.querySelectorAll('.tab').forEach(tab => {
@@ -232,7 +227,7 @@
         }
     };
 
-    // ============ DROPDOWN MANAGER ============
+    
     const Dropdown = {
         init() {
             // Close dropdowns when clicking outside
@@ -253,7 +248,7 @@
         }
     };
 
-    // ============ FORM VALIDATION ============
+    
     const FormValidator = {
         init() {
             document.querySelectorAll('form[data-validate]').forEach(form => {
@@ -311,7 +306,7 @@
         }
     };
 
-    // ============ SCROLL ANIMATIONS ============
+    
     const ScrollAnimations = {
         init() {
             const observer = new IntersectionObserver(
@@ -336,7 +331,7 @@
         }
     };
 
-    // ============ LAZY LOADING IMAGES ============
+    
     const LazyLoad = {
         init() {
             const imageObserver = new IntersectionObserver((entries) => {
@@ -359,7 +354,7 @@
         }
     };
 
-    // ============ SMOOTH SCROLL FOR ANCHORS ============
+    
     const SmoothScroll = {
         init() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -380,7 +375,7 @@
         }
     };
 
-    // ============ COUNTDOWN TIMER ============
+    
     const Countdown = {
         timers: new Map(),
 
@@ -421,7 +416,7 @@
         }
     };
 
-    // ============ DEBOUNCE UTILITY ============
+    
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -434,7 +429,7 @@
         };
     }
 
-    // ============ INITIALIZE ALL MODULES ============
+    
     function init() {
         ThemeManager.init();
         Toast.init();
