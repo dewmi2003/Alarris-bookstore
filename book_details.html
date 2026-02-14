@@ -58,7 +58,7 @@
 
     <main layout:fragment="content">
         <div class="container mt-4">
-            <!-- Breadcrumbs -->
+            
             <div class="flex gap-1 text-sm text-secondary mb-4">
                 <a th:href="@{/}" class="text-secondary">Home</a>
                 <span>/</span>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <!-- Right: Details -->
+                
                 <div class="book-info">
                     <span th:text="${book.category != null ? book.category.name : 'General'}"
                         class="badge badge-info mb-2">Category</span>
@@ -124,7 +124,7 @@
                         </div>
                     </div>
 
-                    <!-- Add to Cart -->
+                    
                     <div class="mt-4">
                         <form th:action="@{/cart/add}" method="post" class="flex gap-2">
                             <input type="hidden" name="bookId" th:value="${book.id}">
@@ -165,6 +165,7 @@
 </body>
 
 </html>
+
 
 
 
