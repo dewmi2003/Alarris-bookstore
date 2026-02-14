@@ -25,7 +25,7 @@ public interface BookService {
 
     void decrementStock(Long bookId, int quantity);
 
-    // New methods for filtering and sorting
+    
     List<Book> findBooksByCategory(Category category);
 
     List<Book> findBooksByPriceRange(Double minPrice, Double maxPrice);
