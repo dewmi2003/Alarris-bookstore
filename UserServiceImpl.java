@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             String candidate = user.getPassword();
-            // Guard against accidental double-encoding when callers pass an existing hash.
+           
             if (BCRYPT_PATTERN.matcher(candidate).matches()) {
                 existingUser.setPassword(candidate);
             } else {
