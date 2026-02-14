@@ -34,7 +34,7 @@
 
             
             <div sec:authorize="!hasRole('ADMIN')" class="flex gap-2">
-                <!-- Cart Icon -->
+               
                 <a th:href="@{/cart}" class="nav-icon-btn" title="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge-count" th:if="${session.cartItemCount != null && session.cartItemCount > 0}"
@@ -76,6 +76,7 @@
         </div>
     </div>
 </nav>
+
 
 
 
