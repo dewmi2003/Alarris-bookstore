@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Join Us - Alariis Bookstore</title>
+</head>
+
+<body>
+    <th:block layout:fragment="extra-css">
+        <style>
+            .auth-section {
+                min-height: calc(100vh - 130px);
+                display: flex;
+                align-items: center;
+                background:
+                    radial-gradient(circle at top left, rgba(79, 70, 229, 0.14), transparent 40%),
+                    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.12), transparent 45%),
+                    var(--bg-soft-white);
+                padding: var(--space-6) 0;
+            }
+
+            .auth-shell {
+                max-width: 620px;
+                margin: 0 auto;
+            }
+
+            .auth-card {
+                background: var(--bg-card);
+                border-radius: var(--radius-xl);
+                padding: var(--space-5);
+                border: 1px solid rgba(79, 70, 229, 0.12);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .auth-title {
+                text-align: center;
+                margin-bottom: var(--space-4);
+            }
+
+            .auth-title i {
+                font-size: 2.8rem;
+                color: var(--primary-indigo);
+                margin-bottom: var(--space-2);
+                display: inline-block;
+            }
+
+            .auth-submit {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border-radius: var(--radius-full);
+                border: 1px solid rgba(99, 102, 241, 0.45);
+                background: rgba(255, 255, 255, 0.08);
+                color: var(--primary-indigo);
+                font-weight: 700;
+                cursor: pointer;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                transition: all 0.2s ease;
+            }
+
+            .auth-submit:hover {
+                background: rgba(99, 102, 241, 0.14);
+                border-color: rgba(99, 102, 241, 0.75);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 14px rgba(79, 70, 229, 0.18);
+            }
+
+            .error-text {
+                font-size: var(--text-xs);
+                color: var(--error);
+                margin-top: 0.25rem;
+            }
+
+            [data-theme="dark"] .auth-section {
+                background:
+                    radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 45%),
+                    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.12), transparent 50%),
+                    var(--bg-soft-white);
+            }
+
+            [data-theme="dark"] .auth-card {
+                border-color: rgba(129, 140, 248, 0.24);
+                box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+            }
+
+            [data-theme="dark"] .auth-submit {
+                color: #c7d2fe;
+                border-color: rgba(129, 140, 248, 0.42);
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            [data-theme="dark"] .auth-submit:hover {
+                background: rgba(129, 140, 248, 0.16);
+                border-color: rgba(165, 180, 252, 0.78);
+            }
+        </style>
+    </th:block>
+
+    <main layout:fragment="content">
+        <section class="auth-section">
+            <div class="container auth-shell">
+                <div class="auth-card scroll-animate">
+                    <div class="auth-title">
+                        <i class="fas fa-user-plus"></i>
+                        <h1 class="text-4xl font-black text-indigo mb-2">Create Account</h1>
+                        <p class="text-secondary">Join Alariis and start building your library.</p>
+                    </div>
+
+                    <div th:if="${param.success}" class="alert alert-success mb-4">
+                        <i class="fas fa-check-circle"></i> Registration successful. You can now log in.
+                    </div>
+
+                    <form th:action="@{/register}" method="post" th:object="${user}">
+                        <div class="form-group mb-4">
+                            <label for="fullName"><i class="fas fa-id-card text-tertiary"></i> Full Name</label>
+                            <input type="text" id="fullName" th:field="*{fullName}" class="form-control" required
+                                placeholder="John Doe">
+                            <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="error-text"></p>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="email"><i class="fas fa-envelope text-tertiary"></i> Email Address</label>
+                            <input type="email" id="email" th:field="*{email}" class="form-control" required
+                                placeholder="name@example.com">
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-text"></p>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password"><i class="fas fa-lock text-tertiary"></i> Password</label>
+                            <input type="password" id="password" th:field="*{password}" class="form-control" required
+                                placeholder="At least 6 characters">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-text"></p>
+                        </div>
+
+                        <button type="submit" class="auth-submit">
+                            <i class="fas fa-user-check"></i> Register
+                        </button>
+
+                        <p class="text-secondary mt-4 text-center">
+                            Already have an account?
+                            <a th:href="@{/login}" class="font-black text-indigo">Log In</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+
+
+
+
