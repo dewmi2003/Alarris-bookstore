@@ -1,0 +1,84 @@
+<nav th:fragment="nav" class="premium-nav" id="mainNav" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="nav-container">
+        
+        <a th:href="@{/}" class="logo-premium">
+            <img th:src="@{/images/logo2.png}" alt="Alariis" class="logo-img">
+        </a>
+
+        <div class="nav-links-premium" sec:authorize="!hasRole('ADMIN')">
+            <a th:href="@{/}" class="nav-chip">Home</a>
+            <a th:href="@{/books(category='fiction')}" class="nav-chip">Browse Books</a>
+            <a th:href="@{/about}" class="nav-chip">About Us</a>
+            <a th:href="@{/contact}" class="nav-chip">Contact Us</a>
+        </div>
+
+       
+        <div class="nav-actions">
+            
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+
+           
+            <div sec:authorize="hasRole('ADMIN')" class="flex gap-2">
+                <a th:href="@{/admin/dashboard}" class="nav-admin-btn">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a th:href="@{/admin/content}" class="nav-admin-btn">
+                    <i class="fas fa-pen-to-square"></i>
+                    Site Content
+                </a>
+            </div>
+
+            
+            <div sec:authorize="!hasRole('ADMIN')" class="flex gap-2">
+               
+                <a th:href="@{/cart}" class="nav-icon-btn" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge-count" th:if="${session.cartItemCount != null && session.cartItemCount > 0}"
+                        th:text="${session.cartItemCount}">0</span>
+                </a>
+            </div>
+
+           
+            <div class="nav-auth" sec:authorize="isAnonymous()">
+                <a th:href="@{/login}" class="btn-nav-login">Login</a>
+                <a th:href="@{/register}" class="btn-nav-register">Register</a>
+            </div>
+
+            
+            <div class="user-dropdown" sec:authorize="isAuthenticated()">
+                <button class="user-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span sec:authentication="name">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a th:href="@{/profile}" class="dropdown-item" sec:authorize="!hasRole('ADMIN')">
+                        <i class="fas fa-user"></i>
+                        My Profile
+                    </a>
+                    <a th:href="@{/my-orders}" class="dropdown-item" sec:authorize="!hasRole('ADMIN')">
+                        <i class="fas fa-box"></i>
+                        My Orders
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <form th:action="@{/logout}" method="post" style="margin: 0;">
+                        <button type="submit" class="logout-dropdown">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} ?: 'Alariis Bookstore'">Alariis Bookstore</title>
+    <script>
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                }
+            } catch (e) {
+              
+            }
+        })();
+    </script>
+
+   
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
+    <link rel="stylesheet" th:href="@{/css/global-design-system.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" th:href="@{/css/premium-home.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+   
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    
+    <div th:replace="~{fragments/header :: nav}"></div>
+
+    
+    <main>
+       
+    </main>
+
+    
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    
+    <div class="toast-container" id="toastContainer"></div>
+
+    
+    <script th:src="@{/js/design-system.js}"></script>
+    <script th:src="@{/js/premium-home.js}"></script>
+</body>
+
+</html>
+
+
+
+
